@@ -1,0 +1,37 @@
+---
+interface Props {
+  imageSrc?: string;
+  imageAlt?: string;
+  badge?: string;
+}
+
+const {
+  imageSrc = '/assets/home.webp',
+  imageAlt = 'Panel de Agus POS',
+  badge = 'En tiempo real',
+} = Astro.props;
+---
+
+<div class="relative max-w-xs mx-auto">
+  <div class="bg-brand-secondary rounded-card p-3 shadow-glow-orange">
+    <div class="bg-brand-dark rounded-[6px] overflow-hidden">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        class="w-full max-h-[260px] object-cover object-top"
+        loading="eager"
+      />
+    </div>
+    <div class="flex justify-center gap-1.5 mt-2">
+      <span class="w-2 h-2 rounded-full bg-brand-orange/60"></span>
+      <span class="w-2 h-2 rounded-full bg-white/20"></span>
+      <span class="w-2 h-2 rounded-full bg-white/20"></span>
+    </div>
+  </div>
+
+  <span
+    class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-btn shadow-glow-orange"
+  >
+    {badge}
+  </span>
+</div>

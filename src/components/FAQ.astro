@@ -1,0 +1,33 @@
+---
+interface Props {
+  faqs: { q: string; a: string }[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<div class="space-y-3">
+  {
+    faqs.map((faq, index) => (
+      <div class="reveal border border-brand-secondary/10 rounded-card overflow-hidden bg-white card-hover">
+        <button
+          type="button"
+          data-faq-toggle={index}
+          aria-expanded="false"
+          class="w-full text-left p-5 flex justify-between items-center gap-4 font-semibold text-brand-secondary hover:bg-brand-section/50 transition"
+        >
+          <span>{faq.q}</span>
+          <i
+            data-faq-icon
+            class="ri-add-line text-2xl text-brand-orange transition-transform duration-200 shrink-0"
+          />
+        </button>
+        <div data-faq-answer={index} class="faq-answer border-t border-brand-secondary/10">
+          <div class="faq-answer-inner">
+            <p class="p-5 pt-4 text-sm text-brand-secondary/70 whitespace-pre-line">{faq.a}</p>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

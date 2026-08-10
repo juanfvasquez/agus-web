@@ -1,0 +1,132 @@
+---
+import {
+  whatsappUrl,
+  whatsappMessages,
+  WHATSAPP_DISPLAY,
+  EMAIL,
+  INSTAGRAM,
+  WEBSITE,
+  TAGLINE,
+  LOCATION,
+} from '../data/site';
+import { footerProductLinks, footerHomeLinks } from '../data/navigation';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaMessage?: string;
+}
+
+const {
+  title = '¿Listo para ser parte de Agus?',
+  subtitle = 'Contáctanos y descubre cómo podemos ayudarte.',
+  ctaText = 'Escríbenos por WhatsApp',
+  ctaMessage = whatsappMessages.general,
+} = Astro.props;
+
+const waUrl = whatsappUrl(ctaMessage);
+---
+
+<footer class="bg-brand-secondary text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div class="lg:col-span-1 reveal">
+        <div class="inline-block p-1.5 rounded-btn bg-white/10 mb-4">
+          <img src="/assets/white-logo-agus.png" alt="Agus App" class="h-9 w-auto" />
+        </div>
+        <p class="text-white/70 text-sm italic mb-2">"{TAGLINE}"</p>
+        <p class="text-white/50 text-sm">{LOCATION}</p>
+      </div>
+
+      <div class="reveal">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Productos</h3>
+        <ul class="space-y-2">
+          {
+            footerProductLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-white/70 hover:text-brand-lightOrange transition-colors text-sm"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Agus App</h3>
+        <ul class="space-y-2">
+          {
+            footerHomeLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-white/70 hover:text-brand-lightOrange transition-colors text-sm"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Contacto</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a
+              href={whatsappUrl(whatsappMessages.general)}
+              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+            >
+              <i class="ri-whatsapp-line text-brand-lightOrange"></i>
+              {WHATSAPP_DISPLAY}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${EMAIL}`}
+              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+            >
+              <i class="ri-mail-line text-brand-lightOrange"></i>
+              {EMAIL}
+            </a>
+          </li>
+          <li>
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+            >
+              <i class="ri-instagram-line text-brand-lightOrange"></i>
+              @agus.app
+            </a>
+          </li>
+          <li>
+            <a
+              href={WEBSITE}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+            >
+              <i class="ri-global-line text-brand-lightOrange"></i>
+              www.agusapp.com
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/50 text-sm">Disponible en App Store y Google Play</p>
+      <a href={waUrl} target="_blank" rel="noopener noreferrer" class="btn-agus text-sm">
+        <i class="ri-whatsapp-line"></i> {ctaText}
+      </a>
+    </div>
+  </div>
+</footer>

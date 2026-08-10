@@ -1,0 +1,53 @@
+---
+import type { productShowcase } from '../../data/home';
+
+interface Props {
+  data: typeof productShowcase;
+}
+
+const { data } = Astro.props;
+---
+
+<section id={data.id} class="section-agus section-wash-deep">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+      <div class="accent-bar mx-auto"></div>
+      <h2 class="section-title">{data.title}</h2>
+      <p class="text-brand-secondary/70">{data.subtitle}</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8 reveal-stagger">
+      {
+        data.products.map((product) => (
+          <a
+            href={product.href}
+            class="reveal group relative bg-white rounded-card border-2 border-brand-orange/20 p-8 card-hover overflow-hidden"
+          >
+            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-bl-full transition-transform group-hover:scale-110" />
+
+            <div class="relative z-10">
+              <div class="flex items-start justify-between mb-6">
+                <div class="w-14 h-14 bg-brand-orange text-white rounded-card flex items-center justify-center text-2xl shadow-glow-orange">
+                  <i class={product.icon} />
+                </div>
+                <span class="bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-btn">
+                  {product.badge}
+                </span>
+              </div>
+
+              <p class="text-brand-orange font-bold text-sm mb-1">{product.hook}</p>
+              <h3 class="text-2xl font-extrabold text-brand-secondary mb-3 group-hover:text-brand-orange transition-colors">
+                {product.name}
+              </h3>
+              <p class="text-brand-secondary/70 leading-relaxed mb-6">{product.description}</p>
+
+              <span class="inline-flex items-center gap-2 text-brand-orange font-semibold group-hover:gap-3 transition-all">
+                Conocer más <i class="ri-arrow-right-line" />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

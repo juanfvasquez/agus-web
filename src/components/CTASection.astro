@@ -1,0 +1,27 @@
+---
+import { whatsappUrl } from '../data/site';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  message: string;
+}
+
+const { title, subtitle, message } = Astro.props;
+const waUrl = whatsappUrl(message);
+---
+
+<section class="section-agus bg-brand-orange text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h2>
+    {subtitle && <p class="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{subtitle}</p>}
+    <a
+      href={waUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 bg-white text-brand-orange font-semibold px-6 py-3 rounded-btn hover:bg-brand-lightBg transition-colors"
+    >
+      <i class="ri-whatsapp-line text-xl"></i> Escríbenos por WhatsApp
+    </a>
+  </div>
+</section>

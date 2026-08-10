@@ -1,0 +1,123 @@
+---
+import { whatsappUrl, whatsappMessages, EMAIL, WHATSAPP_DISPLAY } from '../../data/site';
+import type { contactSection, contactTabs } from '../../data/home';
+
+interface Props {
+  section: typeof contactSection;
+  tabs: typeof contactTabs;
+}
+
+const { section, tabs } = Astro.props;
+---
+
+<section id={section.id} class="section-agus section-orange">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+      <h2 class="section-title">{section.title}</h2>
+      <p class="text-brand-secondary/70">{section.subtitle}</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8">
+      <div class="lg:col-span-2 reveal space-y-4">
+        <div class="bg-white rounded-card border border-brand-secondary/10 p-6">
+          <div class="flex items-start gap-3 mb-4">
+            <i class="ri-mail-line text-xl text-brand-orange mt-0.5"></i>
+            <div>
+              <p class="text-xs uppercase tracking-wide text-brand-secondary/50 mb-1">Email</p>
+              <a href={`mailto:${EMAIL}`} class="font-medium text-brand-secondary hover:text-brand-orange">{EMAIL}</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="ri-phone-line text-xl text-brand-orange mt-0.5"></i>
+            <div>
+              <p class="text-xs uppercase tracking-wide text-brand-secondary/50 mb-1">Teléfono</p>
+              <a href={whatsappUrl(whatsappMessages.general)} class="font-medium text-brand-secondary hover:text-brand-orange">+57 {WHATSAPP_DISPLAY}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-card overflow-hidden border border-brand-secondary/10 h-64 lg:h-[290px]">
+          <iframe
+            src={section.mapSrc}
+            title="Ubicación Agus App en Chinchiná"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 reveal">
+        <div class="bg-white rounded-card border border-brand-secondary/10 overflow-hidden">
+          <div class="flex border-b border-brand-secondary/10 overflow-x-auto" role="tablist">
+            {
+              tabs.map((tab, index) => (
+                <button
+                  type="button"
+                  role="tab"
+                  data-contact-tab={tab.id}
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                  class:list={[
+                    'flex-1 min-w-[120px] px-4 py-3 text-sm font-semibold transition-colors contact-tab',
+                    index === 0
+                      ? 'text-brand-orange border-b-2 border-brand-orange bg-brand-orange/5'
+                      : 'text-brand-secondary/60 hover:text-brand-orange',
+                  ]}
+                >
+                  {tab.label}
+                </button>
+              ))
+            }
+          </div>
+
+          {
+            tabs.map((tab, index) => (
+              <div
+                data-contact-panel={tab.id}
+                role="tabpanel"
+                class:list={['p-8', index !== 0 && 'hidden']}
+              >
+                <h3 class="text-xl font-bold text-brand-secondary mb-2">{tab.title}</h3>
+                <p class="text-brand-secondary/70 mb-6 leading-relaxed">{tab.description}</p>
+                <a
+                  href={whatsappUrl(whatsappMessages[tab.whatsappKey])}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-agus"
+                >
+                  <i class="ri-whatsapp-line text-lg"></i>
+                  {tab.cta}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('[data-contact-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-contact-panel]');
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabId = button.dataset.contactTab;
+
+      tabButtons.forEach((btn) => {
+        const isActive = btn.dataset.contactTab === tabId;
+        btn.setAttribute('aria-selected', String(isActive));
+        btn.classList.toggle('text-brand-orange', isActive);
+        btn.classList.toggle('border-b-2', isActive);
+        btn.classList.toggle('border-brand-orange', isActive);
+        btn.classList.toggle('bg-brand-orange/5', isActive);
+        btn.classList.toggle('text-brand-secondary/60', !isActive);
+      });
+
+      panels.forEach((panel) => {
+        panel.classList.toggle('hidden', panel.dataset.contactPanel !== tabId);
+      });
+    });
+  });
+</script>

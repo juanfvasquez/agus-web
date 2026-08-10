@@ -1,0 +1,33 @@
+---
+import type { onboardingSteps } from '../../data/home';
+
+interface Props {
+  data: typeof onboardingSteps;
+}
+
+const { data } = Astro.props;
+---
+
+<section id={data.id} class="section-agus section-dark">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+      <div class="accent-bar-light mx-auto"></div>
+      <h2 class="section-title-light">{data.title}</h2>
+      <p class="text-white/70">{data.subtitle}</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
+      {
+        data.steps.map((step, index) => (
+          <div class="reveal bg-white/5 border border-white/10 rounded-card p-8 text-center card-hover">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-btn bg-brand-orange text-white text-sm font-bold mb-4">
+              {index + 1}
+            </span>
+            <i class:list={[step.icon, 'text-3xl text-brand-lightOrange mb-4 block']} />
+            <h3 class="font-semibold text-white">{step.title}</h3>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

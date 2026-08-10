@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import PricingCard from '../components/PricingCard.astro';
+import PosDeviceMockup from '../components/pos/PosDeviceMockup.astro';
+import PricingComparison from '../components/PricingComparison.astro';
+import { whatsappUrl, whatsappMessages } from '../data/site';
+import { posNav } from '../data/navigation';
+import {
+  valueProps,
+  problemSolutions,
+  modules,
+  plans,
+  comparisonRows,
+  posOnboardingSteps,
+  posFaqs,
+} from '../data/pos';
+---
+
+<BaseLayout
+  title="Agus POS - Gestión de comercios"
+  description="Sistema POS para restaurantes y comercios. Gestiona mesas, comandas, inventario, caja y empleados. Planes desde $24.900/mes."
+>
+  <Header currentPage="pos" navLinks={posNav} />
+
+  <main>
+    <section class="hero-agus section-agus border-b-4 border-brand-lightOrange">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="reveal">
+            <p class="text-brand-lightOrange font-semibold text-sm uppercase tracking-widest mb-4">
+              Sistema POS
+            </p>
+            <div class="accent-bar-light"></div>
+            <h1 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold leading-tight text-white mb-5">
+              El POS que pone tu negocio bajo control total
+            </h1>
+            <p class="text-lg text-white/85 max-w-xl mb-8 leading-relaxed">
+              Mesas, comandas, inventario, caja y empleados — todo en tiempo real, desde cualquier
+              dispositivo.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href={whatsappUrl(whatsappMessages.pos)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-agus bg-white text-brand-orange hover:bg-brand-wash"
+              >
+                <i class="ri-whatsapp-line text-lg"></i> Solicitar demo
+              </a>
+              <a href="#planes" class="btn-agus-ghost">Ver planes</a>
+            </div>
+          </div>
+
+          <div class="reveal flex justify-center lg:justify-end">
+            <PosDeviceMockup />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-8 bg-brand-washDeep border-b border-brand-orange/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
+          {
+            valueProps.map((prop) => (
+              <div class="reveal flex items-center gap-3 justify-center lg:justify-start">
+                <div class="w-10 h-10 bg-brand-lightBg rounded-xl flex items-center justify-center shrink-0">
+                  <i class:list={[`${prop.icon} text-brand-orange text-xl`]} />
+                </div>
+                <span class="text-sm font-medium text-brand-secondary/80">{prop.text}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem → Solution -->
+    <section class="section-agus section-orange">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="section-title">De problemas reales a soluciones concretas</h2>
+          <p class="text-brand-secondary/70">
+            Diseñamos Agus POS para resolver los dolores de cabeza que enfrentan restaurantes y
+            comercios cada día.
+          </p>
+        </ScrollReveal>
+
+        <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
+          {
+            problemSolutions.map((item) => (
+              <div class="reveal bg-brand-section p-8 rounded-card border border-brand-secondary/10 card-hover">
+                <div class="w-12 h-12 bg-brand-orange/10 rounded-btn flex items-center justify-center mb-4">
+                  <i class:list={[`${item.icon} text-2xl text-brand-orange`]} />
+                </div>
+                <p class="text-sm text-brand-secondary/50 font-medium mb-2">{item.problem}</p>
+                <p class="text-lg font-semibold text-brand-secondary">{item.solution}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="modulos" class="section-agus surface-section">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="section-title">Todo lo que necesitas, en un solo sistema</h2>
+          <p class="text-brand-secondary/70">
+            Módulos potentes que crecen contigo. Empieza con lo esencial y escala cuando lo
+            necesites.
+          </p>
+        </ScrollReveal>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
+          {
+            modules.map((mod) => (
+              <div class="reveal p-6 rounded-card bg-white border border-brand-secondary/10 card-hover">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-11 h-11 bg-brand-orange/10 text-brand-orange rounded-btn flex items-center justify-center text-xl">
+                    <i class={mod.icon}></i>
+                  </div>
+                  <span class="text-xs font-semibold uppercase tracking-wide bg-brand-section px-2 py-1 rounded-btn text-brand-orange">
+                    {mod.plan}+
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold mb-3">{mod.title}</h3>
+                <ul class="space-y-2">
+                  {mod.features.map((f) => (
+                    <li class="text-sm text-brand-secondary/70 flex items-start gap-2">
+                      <i class="ri-check-line text-brand-orange shrink-0 mt-0.5"></i>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="planes" class="section-agus section-wash-deep border-t border-brand-orange/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="section-title">Elige el plan perfecto para tu negocio</h2>
+          <p class="text-brand-secondary/70">
+            Precios transparentes en pesos colombianos. Sin sorpresas, sin permanencia mínima.
+          </p>
+        </ScrollReveal>
+
+        <div class="grid lg:grid-cols-3 gap-6 items-stretch reveal-stagger">
+          {plans.map((plan) => <PricingCard plan={plan} />)}
+        </div>
+      </div>
+    </section>
+
+    <section id="comparativa" class="section-agus section-orange">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="section-title">Comparativa detallada</h2>
+          <p class="text-brand-secondary/70">
+            Encuentra exactamente lo que incluye cada plan y elige con confianza.
+          </p>
+        </ScrollReveal>
+
+        <PricingComparison rows={comparisonRows} />
+      </div>
+    </section>
+
+    <section class="section-agus section-dark">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="section-title-light">Empieza en 3 simples pasos</h2>
+          <p class="text-white/70">De la demo al primer pedido en menos de 48 horas.</p>
+        </ScrollReveal>
+
+        <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
+          {
+            posOnboardingSteps.map((step) => (
+              <div class="reveal text-center bg-white/5 border border-white/10 p-8 rounded-card card-hover">
+                <span class="inline-flex w-11 h-11 bg-brand-orange text-white rounded-btn items-center justify-center font-bold text-lg mb-6">
+                  {step.step}
+                </span>
+                <h3 class="text-xl font-bold mb-3 text-white">{step.title}</h3>
+                <p class="text-white/70 text-sm">{step.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section-agus section-wash-deep">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal class="text-center mb-16">
+          <h2 class="section-title">Preguntas Frecuentes</h2>
+          <p class="text-brand-secondary/70">Todo lo que necesitas saber sobre Agus POS.</p>
+        </ScrollReveal>
+
+        <FAQ faqs={posFaqs} />
+      </div>
+    </section>
+
+    <CTASection
+      title="Empieza a gestionar tu negocio como un profesional"
+      subtitle="Escríbenos y te mostramos una demo personalizada para tu tipo de negocio."
+      message={whatsappMessages.pos}
+    />
+  </main>
+
+  <Footer
+    title="¿Listo para modernizar tu operación?"
+    subtitle="Contáctanos y elige el plan POS ideal para tu negocio."
+    ctaText="Hablar con un asesor →"
+    ctaMessage={whatsappMessages.pos}
+  />
+</BaseLayout>

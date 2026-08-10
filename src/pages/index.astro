@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import ProductShowcase from '../components/home/ProductShowcase.astro';
+import AppDownload from '../components/home/AppDownload.astro';
+import AudienceBlock from '../components/home/AudienceBlock.astro';
+import OnboardingSteps from '../components/home/OnboardingSteps.astro';
+import ClientsMarquee from '../components/home/ClientsMarquee.astro';
+import ContactWhatsApp from '../components/home/ContactWhatsApp.astro';
+import {
+  hero,
+  productShowcase,
+  appSection,
+  commerceSection,
+  onboardingSteps,
+  operatorsSection,
+  clientsSection,
+  contactSection,
+  contactTabs,
+} from '../data/home';
+---
+
+<BaseLayout
+  title="Agus App - Servicio de Domicilios y Delivery"
+  description="Agus App es tu mejor aliado para domicilios y delivery. Conectamos comercios, operadores y clientes en una plataforma moderna y confiable."
+>
+  <Header currentPage="home" />
+
+  <main>
+    <HomeHero data={hero} />
+    <AppDownload data={appSection} />
+    <AudienceBlock
+      id={commerceSection.id}
+      title={commerceSection.title}
+      description={commerceSection.description}
+      image={commerceSection.image}
+      imageAlt={commerceSection.imageAlt}
+      imagePosition="left"
+      features={commerceSection.features}
+      primaryCta={commerceSection.primaryCta}
+      secondaryCta={commerceSection.secondaryCta}
+      variant="highlight"
+    />
+    <OnboardingSteps data={onboardingSteps} />
+    <ProductShowcase data={productShowcase} />
+    <AudienceBlock
+      id={operatorsSection.id}
+      title={operatorsSection.title}
+      description={operatorsSection.description}
+      image={operatorsSection.image}
+      imageAlt={operatorsSection.imageAlt}
+      imagePosition={operatorsSection.imagePosition}
+      features={operatorsSection.features}
+      cta={operatorsSection.cta}
+      variant="alt"
+    />
+    <ClientsMarquee data={clientsSection} />
+    <ContactWhatsApp section={contactSection} tabs={contactTabs} />
+  </main>
+
+  <Footer />
+</BaseLayout>

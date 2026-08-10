@@ -1,0 +1,58 @@
+---
+import type { ComparisonRow } from '../data/pos';
+
+interface Props {
+  rows: ComparisonRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="reveal overflow-x-auto rounded-card border border-brand-secondary/10">
+  <table class="w-full min-w-[640px] text-left">
+    <thead>
+      <tr class="bg-brand-secondary text-white">
+        <th class="p-4 font-semibold">Funcionalidad</th>
+        <th class="p-4 font-semibold text-center">Standard</th>
+        <th class="p-4 font-semibold text-center bg-brand-orange/20">Pro</th>
+        <th class="p-4 font-semibold text-center">Empresarial</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row, i) => (
+          <tr class:list={['border-t border-brand-secondary/10', i % 2 === 0 ? 'bg-white' : 'bg-brand-section']}>
+            <td class="p-4 font-medium text-brand-secondary">{row.feature}</td>
+            <td class="p-4 text-center">
+              {row.standard === true ? (
+                <i class="ri-check-line text-xl text-emerald-600" />
+              ) : row.standard === false ? (
+                <i class="ri-close-line text-xl text-brand-secondary/25" />
+              ) : (
+                <span class="text-sm font-semibold text-brand-orange">{row.standard}</span>
+              )}
+            </td>
+            <td class="p-4 text-center bg-brand-orange/5">
+              {row.pro === true ? (
+                <i class="ri-check-line text-xl text-emerald-600" />
+              ) : row.pro === false ? (
+                <i class="ri-close-line text-xl text-brand-secondary/25" />
+              ) : (
+                <span class="text-sm font-semibold text-brand-orange">{row.pro}</span>
+              )}
+            </td>
+            <td class="p-4 text-center">
+              {row.empresarial === true ? (
+                <i class="ri-check-line text-xl text-emerald-600" />
+              ) : row.empresarial === false ? (
+                <i class="ri-close-line text-xl text-brand-secondary/25" />
+              ) : (
+                <span class="text-sm font-semibold text-brand-orange">{row.empresarial}</span>
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
