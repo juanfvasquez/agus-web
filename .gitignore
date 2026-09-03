@@ -16,3 +16,9 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
+
+.cursor
+.kimi-code
+.opencode
+.agent
+openspec

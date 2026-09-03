@@ -1,5 +1,6 @@
 ---
 import type { appSection } from '../../data/home';
+import { APP_STORE_URL, PLAY_STORE_URL } from '../../data/site';
 
 interface Props {
   data: typeof appSection;
@@ -29,14 +30,40 @@ const { data } = Astro.props;
         <h2 class="section-title">{data.title}</h2>
         <p class="text-brand-secondary/70 leading-relaxed mb-8">{data.description}</p>
         <div class="flex flex-wrap gap-4">
-          <a href="#" aria-label="Descargar en Google Play">
-            <img src={data.playStore} alt="Google Play" class="h-12 w-auto hover:scale-105 transition-transform" loading="lazy" />
+          <a
+            href={PLAY_STORE_URL}
+            data-store-link="android"
+            data-store-source="home"
+            aria-label="Descargar en Google Play"
+          >
+            <img
+              src={data.playStore}
+              alt="Google Play"
+              class="h-12 w-auto hover:scale-105 transition-transform"
+              loading="lazy"
+            />
           </a>
-          <a href="#" aria-label="Descargar en App Store">
-            <img src={data.appStore} alt="App Store" class="h-12 w-auto hover:scale-105 transition-transform" loading="lazy" />
+          <a
+            href={APP_STORE_URL}
+            data-store-link="ios"
+            data-store-source="home"
+            aria-label="Descargar en App Store"
+          >
+            <img
+              src={data.appStore}
+              alt="App Store"
+              class="h-12 w-auto hover:scale-105 transition-transform"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { initStoreLinkTracking } from '../../scripts/store-link-tracking.ts';
+
+  initStoreLinkTracking();
+</script>

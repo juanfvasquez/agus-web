@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AppLandingHeader from '../components/app/AppLandingHeader.astro';
+import AppLandingFooter from '../components/app/AppLandingFooter.astro';
+import { appDownloadPage } from '../data/app-download';
+import { APP_STORE_URL, PLAY_STORE_URL } from '../data/site';
+
+const { hero, features, storeBadges, redirectMessage, redirectHint } = appDownloadPage;
+---
+
+<BaseLayout
+  title={appDownloadPage.title}
+  description={appDownloadPage.description}
+  ogImage={appDownloadPage.ogImage}
+  ogTitle={appDownloadPage.title}
+>
+  <div data-app-download-page>
+    <AppLandingHeader />
+
+    <main>
+      <div id="app-redirect-state" class="hidden hero-agus section-agus min-h-[calc(100vh-72px-120px)] flex items-center">
+        <div class="max-w-xl mx-auto px-4 text-center">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/15 mb-6"
+            aria-hidden="true"
+          >
+            <i class="ri-loader-4-line text-3xl text-white animate-spin"></i>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3">{redirectMessage}</h1>
+          <p class="text-white/80 mb-8">{redirectHint}</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href={PLAY_STORE_URL}
+              data-store-link="android"
+              data-store-source="landing"
+              aria-label="Descargar en Google Play"
+            >
+              <img
+                src={storeBadges.playStore}
+                alt="Google Play"
+                class="h-12 w-auto hover:scale-105 transition-transform"
+              />
+            </a>
+            <a
+              href={APP_STORE_URL}
+              data-store-link="ios"
+              data-store-source="landing"
+              aria-label="Descargar en App Store"
+            >
+              <img
+                src={storeBadges.appStore}
+                alt="App Store"
+                class="h-12 w-auto hover:scale-105 transition-transform"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="app-landing-content">
+        <section class="hero-agus section-agus min-h-[calc(100vh-72px-120px)] flex items-center">
+          <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+            <div
+              class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-lightOrange/20 rounded-full blur-3xl"
+            >
+            </div>
+            <div
+              class="absolute inset-0 opacity-[0.07]"
+              style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"
+            >
+            </div>
+          </div>
+
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12">
+            <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
+              <div class="reveal order-2 lg:order-1">
+                <p class="text-brand-lightOrange font-semibold text-sm uppercase tracking-widest mb-3">
+                  {hero.tagline}
+                </p>
+                <div class="accent-bar-light"></div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white mb-5">
+                  {hero.title}
+                </h1>
+                <p class="text-lg text-white/85 leading-relaxed mb-8 max-w-xl">
+                  {hero.subtitle}
+                </p>
+
+                <div class="flex flex-wrap gap-4 mb-10">
+                  <a
+                    href={PLAY_STORE_URL}
+                    data-store-link="android"
+                    data-store-source="landing"
+                    aria-label="Descargar en Google Play"
+                  >
+                    <img
+                      src={storeBadges.playStore}
+                      alt="Google Play"
+                      class="h-14 w-auto hover:scale-105 transition-transform"
+                    />
+                  </a>
+                  <a
+                    href={APP_STORE_URL}
+                    data-store-link="ios"
+                    data-store-source="landing"
+                    aria-label="Descargar en App Store"
+                  >
+                    <img
+                      src={storeBadges.appStore}
+                      alt="App Store"
+                      class="h-14 w-auto hover:scale-105 transition-transform"
+                    />
+                  </a>
+                </div>
+
+                <ul class="grid sm:grid-cols-3 gap-4">
+                  {
+                    features.map((feature) => (
+                      <li class="bg-white/10 rounded-card p-4 border border-white/10">
+                        <i class={`${feature.icon} text-brand-lightOrange text-xl mb-2 block`} />
+                        <p class="text-white font-semibold text-sm mb-1">{feature.title}</p>
+                        <p class="text-white/70 text-xs leading-relaxed">{feature.description}</p>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div class="reveal order-1 lg:order-2 flex justify-center">
+                <div class="relative float-soft">
+                  <div
+                    class="absolute inset-0 bg-white/10 rounded-[2rem] blur-2xl scale-95"
+                    aria-hidden="true"
+                  >
+                  </div>
+                  <img
+                    src={hero.image}
+                    alt={hero.imageAlt}
+                    class="relative w-full max-w-sm lg:max-w-md drop-shadow-2xl"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <AppLandingFooter />
+  </div>
+
+  <script>
+    import '../scripts/app-device-redirect.ts';
+    import { initStoreLinkTracking } from '../scripts/store-link-tracking.ts';
+
+    initStoreLinkTracking();
+  </script>
+</BaseLayout>
