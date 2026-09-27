@@ -30,6 +30,12 @@ export const benefits = [
       'Como aliado, puedes solicitar domiciliarios para pedidos que recibes por tus propios canales (redes, WhatsApp, etc.), sujeto a disponibilidad.',
   },
   {
+    icon: 'ri-restaurant-2-line',
+    title: 'Menú online',
+    description:
+      'Tu carta digital siempre actualizada con fotos, precios y variantes en tiempo real para compartir por enlace o redes.',
+  },
+  {
     icon: 'ri-bar-chart-box-line',
     title: 'Dashboard con tus métricas',
     description:
@@ -46,7 +52,6 @@ export const benefits = [
     title: 'Visibilidad en app y redes sociales',
     description:
       'Tu negocio aparece en el catálogo de Agus. Además, contamos con espacios en redes sociales como posts y banners para promocionar tus productos a nuestra comunidad.',
-    wide: true,
   },
 ];
 

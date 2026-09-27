@@ -43,14 +43,14 @@ export const modules = [
     features: [
       'App empleados (hasta 12)',
       'Pedidos en mesa',
-      'Horarios y asistencias (Empresarial)',
+      'Gestión de horarios (Empresarial)',
     ],
   },
   {
     title: 'Escala',
     icon: 'ri-building-4-line',
     plan: 'Empresarial',
-    features: ['Multisucursal', 'Multi caja', 'Nómina y asistencias'],
+    features: ['Multisucursal', 'Multi caja', 'Facturación electrónica'],
   },
 ];
 
@@ -87,7 +87,6 @@ export const plans: Plan[] = [
     features: [
       'Todo lo de Standard',
       'Gestión de inventarios',
-      'Mapa de mesas visual',
       'App empleados (hasta 12): pedidos en mesa + comandas',
       'Arqueos y cierres de caja',
     ],
@@ -102,7 +101,7 @@ export const plans: Plan[] = [
       'Todo lo de Pro',
       'Multisucursal y multi caja',
       'Gestión de horarios',
-      'Nómina, asistencias, entradas/salidas de empleados',
+      'Facturación electrónica',
     ],
   },
 ];
@@ -120,13 +119,12 @@ export const comparisonRows: ComparisonRow[] = [
   { feature: 'Seguimiento de caja', standard: true, pro: true, empresarial: true },
   { feature: 'Depósitos', standard: true, pro: true, empresarial: true },
   { feature: 'Gestión de inventarios', standard: false, pro: true, empresarial: true },
-  { feature: 'Mapa de mesas', standard: false, pro: true, empresarial: true },
   { feature: 'App empleados', standard: false, pro: 'Hasta 12', empresarial: 'Ilimitado' },
   { feature: 'Arqueos y cierres de caja', standard: false, pro: true, empresarial: true },
   { feature: 'Multisucursal', standard: false, pro: false, empresarial: true },
   { feature: 'Multi caja', standard: false, pro: false, empresarial: true },
   { feature: 'Gestión de horarios', standard: false, pro: false, empresarial: true },
-  { feature: 'Nómina y asistencias', standard: false, pro: false, empresarial: true },
+  { feature: 'Facturación electrónica', standard: false, pro: false, empresarial: true },
 ];
 
 export const posOnboardingSteps = [
