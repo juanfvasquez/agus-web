@@ -77,3 +77,14 @@ export function pushStoreClick(platform: StorePlatform, source: StoreClickSource
     ...getTrackingParams(),
   });
 }
+
+export function pushWebOrdersClick(source: string = 'app_landing') {
+  initDataLayer();
+  window.dataLayer.push({
+    event: 'web_orders_click',
+    source,
+    destination: 'https://pedidos.agusapp.com',
+    page_path: window.location.pathname,
+    ...getTrackingParams(),
+  });
+}

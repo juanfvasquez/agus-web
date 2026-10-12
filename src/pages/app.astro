@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AppLandingHeader from '../components/app/AppLandingHeader.astro';
 import AppLandingFooter from '../components/app/AppLandingFooter.astro';
 import { appDownloadPage } from '../data/app-download';
-import { APP_STORE_URL, PLAY_STORE_URL } from '../data/site';
+import { APP_STORE_URL, PLAY_STORE_URL, ORDERS_WEB_URL } from '../data/site';
 
 const { hero, features, storeBadges, redirectMessage, redirectHint } = appDownloadPage;
 ---
@@ -86,31 +86,64 @@ const { hero, features, storeBadges, redirectMessage, redirectHint } = appDownlo
                   {hero.subtitle}
                 </p>
 
-                <div class="flex flex-wrap gap-4 mb-10">
-                  <a
-                    href={PLAY_STORE_URL}
-                    data-store-link="android"
-                    data-store-source="landing"
-                    aria-label="Descargar en Google Play"
-                  >
-                    <img
-                      src={storeBadges.playStore}
-                      alt="Google Play"
-                      class="h-14 w-auto hover:scale-105 transition-transform"
-                    />
-                  </a>
-                  <a
-                    href={APP_STORE_URL}
-                    data-store-link="ios"
-                    data-store-source="landing"
-                    aria-label="Descargar en App Store"
-                  >
-                    <img
-                      src={storeBadges.appStore}
-                      alt="App Store"
-                      class="h-14 w-auto hover:scale-105 transition-transform"
-                    />
-                  </a>
+                <!-- Action CTA: Pedir en la Web (Destacado) -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 mb-8 max-w-xl shadow-lg">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <p class="text-white font-bold text-base flex items-center gap-2">
+                        <i class="ri-computer-line text-brand-lightOrange text-lg"></i>
+                        ¿Estás en tu computador?
+                      </p>
+                      <p class="text-white/80 text-xs sm:text-sm mt-0.5">
+                        {hero.webOrderDescription}
+                      </p>
+                    </div>
+                    <a
+                      href={ORDERS_WEB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-web-orders-link
+                      data-web-orders-source="landing_hero"
+                      class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-btn bg-white text-brand-orange font-bold text-sm hover:bg-brand-wash hover:shadow-glow-orange transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <i class="ri-shopping-bag-3-fill text-lg"></i>
+                      <span>{hero.webOrderCta}</span>
+                      <i class="ri-arrow-right-line text-sm"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- O descargar la App -->
+                <div class="mb-10">
+                  <p class="text-xs uppercase tracking-wider text-white/70 font-semibold mb-3">
+                    O descarga la app en tu celular:
+                  </p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <a
+                      href={PLAY_STORE_URL}
+                      data-store-link="android"
+                      data-store-source="landing"
+                      aria-label="Descargar en Google Play"
+                    >
+                      <img
+                        src={storeBadges.playStore}
+                        alt="Google Play"
+                        class="h-12 w-auto hover:scale-105 transition-transform"
+                      />
+                    </a>
+                    <a
+                      href={APP_STORE_URL}
+                      data-store-link="ios"
+                      data-store-source="landing"
+                      aria-label="Descargar en App Store"
+                    >
+                      <img
+                        src={storeBadges.appStore}
+                        alt="App Store"
+                        class="h-12 w-auto hover:scale-105 transition-transform"
+                      />
+                    </a>
+                  </div>
                 </div>
 
                 <ul class="grid sm:grid-cols-3 gap-4">

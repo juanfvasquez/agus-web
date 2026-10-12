@@ -5,11 +5,14 @@ export const appDownloadPage = {
   ogImage: '/assets/app-icon.png',
   hero: {
     tagline: 'Tu pedido en las mejores manos',
-    title: 'Descarga Agus App y pide a domicilio',
+    title: 'Pide en línea o descarga Agus App',
     subtitle:
-      'Encuentra tus establecimientos favoritos, haz tu pedido en segundos y recíbelo en la puerta de tu casa.',
+      'Pide desde tu computador o navegador móvil sin instalar nada, o descarga la app para llevar tus restaurantes y comercios favoritos siempre contigo.',
     image: '/img/phone-app.png',
     imageAlt: 'Agus App en tu celular',
+    webOrderCta: 'Hacer pedido en la web',
+    webOrderDescription: 'Sin descargar la app, rápido y directo desde tu navegador.',
+    qrCode: '/img/qr.svg',
   },
   features: [
     {

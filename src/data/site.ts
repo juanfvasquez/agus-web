@@ -9,6 +9,7 @@ export const LOCATION = 'Chinchiná, Caldas, Colombia';
 export const PLAY_STORE_URL =
   'https://play.google.com/store/apps/details?id=com.agus.customers_app&hl=es_CO';
 export const APP_STORE_URL = 'https://apps.apple.com/co/app/agus-app/id1597409322';
+export const ORDERS_WEB_URL = 'https://pedidos.agusapp.com';
 
 export function whatsappUrl(message: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

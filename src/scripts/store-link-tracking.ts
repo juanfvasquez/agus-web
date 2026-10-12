@@ -1,4 +1,4 @@
-import { pushStoreClick, type StoreClickSource, type StorePlatform } from './analytics';
+import { pushStoreClick, pushWebOrdersClick, type StoreClickSource, type StorePlatform } from './analytics';
 
 export function initStoreLinkTracking() {
   document.querySelectorAll<HTMLAnchorElement>('[data-store-link]').forEach((link) => {
@@ -9,6 +9,13 @@ export function initStoreLinkTracking() {
       if (platform) {
         pushStoreClick(platform, source);
       }
+    });
+  });
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-web-orders-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const source = link.dataset.webOrdersSource ?? 'app_landing';
+      pushWebOrdersClick(source);
     });
   });
 }
