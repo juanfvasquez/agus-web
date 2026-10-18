@@ -10,26 +10,33 @@ const doubledLogos = [...data.logos, ...data.logos];
 ---
 
 <section id={data.id} class="section-agus section-dark overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
     <div class="text-center reveal">
-      <div class="accent-bar-light mx-auto"></div>
       <h2 class="section-title-light">{data.title}</h2>
-      <p class="text-white/70">{data.subtitle}</p>
+      <p class="text-brand-washDeep/80 text-base sm:text-lg">{data.subtitle}</p>
     </div>
   </div>
 
   <div class="reveal relative">
-    <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
+    <div
+      class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"
+      aria-hidden="true"
+    >
+    </div>
 
-    <div class="flex animate-marquee w-max gap-6 px-4">
+    <div class="flex animate-marquee w-max gap-6 px-4 py-2">
       {
         doubledLogos.map((logo) => (
-          <div class="flex-shrink-0 w-28 h-28 flex items-center justify-center bg-white/10 rounded-card border border-white/10 p-3">
+          <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center bg-white rounded-card p-3.5 shadow-elevated transition-transform duration-300 ease-agus hover:scale-105">
             <img
               src={logo.src}
               alt={logo.alt}
-              class="max-w-full max-h-full object-contain brightness-110 hover:brightness-125 transition-all duration-300"
+              class="max-w-full max-h-full object-contain rounded-btn"
               loading="lazy"
             />
           </div>

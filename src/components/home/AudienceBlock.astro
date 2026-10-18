@@ -42,6 +42,10 @@ const bgClass =
     : variant === 'alt'
       ? 'surface-section'
       : 'bg-white';
+
+const badgeTitle = imageFirst ? 'Canal de ventas activo' : '100% del domicilio para ti';
+const badgeSub = imageFirst ? 'Pagos lunes y jueves' : 'Conéctate en tu propio horario';
+const badgeIcon = imageFirst ? 'ri-store-2-fill' : 'ri-e-bike-2-fill';
 ---
 
 <section id={id} class:list={['section-agus', bgClass]}>
@@ -50,32 +54,48 @@ const bgClass =
       {
         imageFirst && (
           <div class="reveal">
-            <div class="relative">
-              <div class="absolute -inset-3 bg-brand-orange/10 rounded-card -z-10" />
-              <img
-                src={image}
-                alt={imageAlt}
-                class="w-full max-w-md mx-auto rounded-card shadow-glow-orange"
-                loading="lazy"
-              />
+            <div class="tilt-3d-stage max-w-md mx-auto relative" data-tilt-stage data-tilt-max="5">
+              <div class="tilt-3d-body relative" data-tilt-body>
+                <img
+                  src={image}
+                  alt={imageAlt}
+                  class="w-full rounded-card shadow-elevated-lg"
+                  loading="lazy"
+                />
+                <div
+                  class="hidden sm:flex items-center gap-3 bg-brand-dark/95 text-white px-4 py-3 rounded-card shadow-elevated-lg absolute -bottom-5 -right-4"
+                  style="transform: translateZ(32px);"
+                >
+                  <div class="w-9 h-9 rounded-btn bg-brand-orange flex items-center justify-center text-white shrink-0">
+                    <i class={badgeIcon} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-white leading-tight">{badgeTitle}</p>
+                    <p class="text-[11px] text-brand-washDeep/80">{badgeSub}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )
       }
 
       <div class="reveal">
-        <div class="accent-bar"></div>
         <h2 class="section-title">{title}</h2>
-        <p class="text-brand-secondary/70 leading-relaxed mb-8">{description}</p>
+        <p class="text-brand-secondary/80 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
+          {description}
+        </p>
 
-        <div class="grid sm:grid-cols-2 gap-6 mb-8">
+        <div class="grid sm:grid-cols-2 gap-5 mb-9">
           {
             features.map((feature) => (
-              <div class="bg-white/80 rounded-card p-4 border border-brand-orange/10">
-                <i class:list={[feature.icon, 'text-2xl text-brand-orange mb-2 block']} />
-                <h3 class="font-semibold text-brand-secondary mb-1">{feature.title}</h3>
+              <div class="spotlight-card bg-white rounded-card p-6 shadow-elevated">
+                <div class="w-11 h-11 rounded-btn bg-brand-washDeep text-brand-orange flex items-center justify-center text-xl mb-3.5">
+                  <i class={feature.icon} aria-hidden="true" />
+                </div>
+                <h3 class="font-bold text-brand-secondary text-base mb-1.5">{feature.title}</h3>
                 {feature.description && (
-                  <p class="text-sm text-brand-secondary/60">{feature.description}</p>
+                  <p class="text-sm text-brand-secondary/80 leading-relaxed">{feature.description}</p>
                 )}
               </div>
             ))
@@ -84,14 +104,14 @@ const bgClass =
 
         {
           primaryCta && (
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-3.5">
               <a href={primaryCta.href} class="btn-agus">
-                {primaryCta.label}
-                <i class="ri-arrow-right-line"></i>
+                <span>{primaryCta.label}</span>
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
               </a>
               {secondaryCta && (
                 <a href={secondaryCta.href} class="btn-agus-outline">
-                  {secondaryCta.label}
+                  <span>{secondaryCta.label}</span>
                 </a>
               )}
             </div>
@@ -106,8 +126,8 @@ const bgClass =
               rel="noopener noreferrer"
               class="btn-agus"
             >
-              <i class="ri-whatsapp-line"></i>
-              {cta.label}
+              <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+              <span>{cta.label}</span>
             </a>
           )
         }
@@ -116,14 +136,27 @@ const bgClass =
       {
         !imageFirst && (
           <div class="reveal">
-            <div class="relative">
-              <div class="absolute -inset-3 bg-brand-orange/10 rounded-card -z-10" />
-              <img
-                src={image}
-                alt={imageAlt}
-                class="w-full max-w-md mx-auto rounded-card shadow-glow-orange"
-                loading="lazy"
-              />
+            <div class="tilt-3d-stage max-w-md mx-auto relative" data-tilt-stage data-tilt-max="5">
+              <div class="tilt-3d-body relative" data-tilt-body>
+                <img
+                  src={image}
+                  alt={imageAlt}
+                  class="w-full rounded-card shadow-elevated-lg"
+                  loading="lazy"
+                />
+                <div
+                  class="hidden sm:flex items-center gap-3 bg-brand-dark/95 text-white px-4 py-3 rounded-card shadow-elevated-lg absolute -bottom-5 -left-4"
+                  style="transform: translateZ(32px);"
+                >
+                  <div class="w-9 h-9 rounded-btn bg-brand-orange flex items-center justify-center text-white shrink-0">
+                    <i class={badgeIcon} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-white leading-tight">{badgeTitle}</p>
+                    <p class="text-[11px] text-brand-washDeep/80">{badgeSub}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )

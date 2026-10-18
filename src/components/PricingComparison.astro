@@ -1,5 +1,6 @@
 ---
 import type { ComparisonRow } from '../data/pos';
+import { whatsappUrl, whatsappMessages } from '../data/site';
 
 interface Props {
   rows: ComparisonRow[];
@@ -8,51 +9,145 @@ interface Props {
 const { rows } = Astro.props;
 ---
 
-<div class="reveal overflow-x-auto rounded-card border border-brand-secondary/10">
-  <table class="w-full min-w-[640px] text-left">
+<div class="reveal overflow-x-auto rounded-card bg-white shadow-elevated-lg">
+  <table class="w-full min-w-[680px] text-left border-collapse">
     <thead>
-      <tr class="bg-brand-secondary text-white">
-        <th class="p-4 font-semibold">Funcionalidad</th>
-        <th class="p-4 font-semibold text-center">Standard</th>
-        <th class="p-4 font-semibold text-center bg-brand-orange/20">Pro</th>
-        <th class="p-4 font-semibold text-center">Empresarial</th>
+      <tr class="bg-brand-dark text-white">
+        <th class="p-5 sm:p-6 font-display text-base sm:text-lg font-bold w-[34%]">
+          Funcionalidades incluidas
+          <span class="block text-xs font-sans font-normal text-brand-washDeep/75 mt-1">
+            Comparativa completa por plan mensual
+          </span>
+        </th>
+        <th class="p-5 sm:p-6 text-center align-bottom w-[22%]">
+          <span class="block font-display text-lg font-bold text-white">Standard</span>
+          <span class="block text-sm font-bold text-brand-washDeep/85 tabular-nums mt-0.5">
+            $24.900<span class="text-xs font-normal text-brand-washDeep/65">/mes</span>
+          </span>
+        </th>
+        <th class="p-5 sm:p-6 text-center align-bottom bg-brand-orange text-white w-[22%] relative">
+          <span class="inline-block bg-brand-dark/25 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-1.5">
+            Más elegido
+          </span>
+          <span class="block font-display text-lg font-extrabold text-white">Pro</span>
+          <span class="block text-sm font-extrabold text-white tabular-nums mt-0.5">
+            $59.900<span class="text-xs font-normal text-white/85">/mes</span>
+          </span>
+        </th>
+        <th class="p-5 sm:p-6 text-center align-bottom w-[22%]">
+          <span class="block font-display text-lg font-bold text-white">Empresarial</span>
+          <span class="block text-sm font-bold text-brand-washDeep/85 tabular-nums mt-0.5">
+            $129.900<span class="text-xs font-normal text-brand-washDeep/65">/mes</span>
+          </span>
+        </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-brand-secondary/10">
       {
         rows.map((row, i) => (
-          <tr class:list={['border-t border-brand-secondary/10', i % 2 === 0 ? 'bg-white' : 'bg-brand-section']}>
-            <td class="p-4 font-medium text-brand-secondary">{row.feature}</td>
-            <td class="p-4 text-center">
+          <tr
+            class:list={[
+              'transition-colors hover:bg-brand-washDeep/40',
+              i % 2 === 0 ? 'bg-white' : 'bg-brand-wash',
+            ]}
+          >
+            <td class="px-5 sm:px-6 py-4 font-semibold text-brand-secondary text-sm sm:text-base">
+              {row.feature}
+            </td>
+            <td class="px-4 py-4 text-center">
               {row.standard === true ? (
-                <i class="ri-check-line text-xl text-emerald-600" />
+                <span
+                  class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-700"
+                  aria-label="Incluido"
+                >
+                  <i class="ri-check-line text-lg font-bold" aria-hidden="true" />
+                </span>
               ) : row.standard === false ? (
-                <i class="ri-close-line text-xl text-brand-secondary/25" />
+                <span class="text-brand-secondary/35 text-sm font-medium" aria-label="No incluido">
+                  —
+                </span>
               ) : (
-                <span class="text-sm font-semibold text-brand-orange">{row.standard}</span>
+                <span class="inline-block text-xs font-bold bg-brand-section text-brand-secondary px-3 py-1 rounded-btn">
+                  {row.standard}
+                </span>
               )}
             </td>
-            <td class="p-4 text-center bg-brand-orange/5">
+            <td class="px-4 py-4 text-center bg-brand-orange/[0.06] font-medium">
               {row.pro === true ? (
-                <i class="ri-check-line text-xl text-emerald-600" />
+                <span
+                  class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-brand-orange text-white shadow-sm"
+                  aria-label="Incluido en Pro"
+                >
+                  <i class="ri-check-line text-lg font-bold" aria-hidden="true" />
+                </span>
               ) : row.pro === false ? (
-                <i class="ri-close-line text-xl text-brand-secondary/25" />
+                <span class="text-brand-secondary/35 text-sm font-medium" aria-label="No incluido">
+                  —
+                </span>
               ) : (
-                <span class="text-sm font-semibold text-brand-orange">{row.pro}</span>
+                <span class="inline-block text-xs font-bold bg-brand-orange text-white px-3 py-1 rounded-btn shadow-sm">
+                  {row.pro}
+                </span>
               )}
             </td>
-            <td class="p-4 text-center">
+            <td class="px-4 py-4 text-center">
               {row.empresarial === true ? (
-                <i class="ri-check-line text-xl text-emerald-600" />
+                <span
+                  class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500/15 text-emerald-700"
+                  aria-label="Incluido"
+                >
+                  <i class="ri-check-line text-lg font-bold" aria-hidden="true" />
+                </span>
               ) : row.empresarial === false ? (
-                <i class="ri-close-line text-xl text-brand-secondary/25" />
+                <span class="text-brand-secondary/35 text-sm font-medium" aria-label="No incluido">
+                  —
+                </span>
               ) : (
-                <span class="text-sm font-semibold text-brand-orange">{row.empresarial}</span>
+                <span class="inline-block text-xs font-bold bg-brand-dark text-white px-3 py-1 rounded-btn">
+                  {row.empresarial}
+                </span>
               )}
             </td>
           </tr>
         ))
       }
     </tbody>
+    <tfoot>
+      <tr class="border-t border-brand-secondary/15 bg-brand-wash">
+        <td class="p-5 sm:p-6 text-xs text-brand-secondary/75 font-medium">
+          Todos los planes incluyen soporte y actualizaciones.
+        </td>
+        <td class="p-4 text-center">
+          <a
+            href={whatsappUrl(whatsappMessages.posPlan('Standard'))}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-btn text-xs font-bold bg-brand-secondary text-white hover:bg-brand-dark transition-colors"
+          >
+            Elegir Standard
+          </a>
+        </td>
+        <td class="p-4 text-center bg-brand-orange/[0.06]">
+          <a
+            href={whatsappUrl(whatsappMessages.posPlan('Pro'))}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-btn text-xs font-bold bg-brand-orange text-white hover:bg-brand-darkOrange shadow-glow-orange transition-all"
+          >
+            Elegir Pro
+          </a>
+        </td>
+        <td class="p-4 text-center">
+          <a
+            href={whatsappUrl(whatsappMessages.posPlan('Empresarial'))}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-btn text-xs font-bold bg-brand-secondary text-white hover:bg-brand-dark transition-colors"
+          >
+            Elegir Empresarial
+          </a>
+        </td>
+      </tr>
+    </tfoot>
   </table>
 </div>

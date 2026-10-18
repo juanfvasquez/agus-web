@@ -1,33 +1,65 @@
 ---
 import type { onboardingSteps } from '../../data/home';
+import { whatsappUrl, whatsappMessages } from '../../data/site';
 
 interface Props {
   data: typeof onboardingSteps;
 }
 
 const { data } = Astro.props;
+const stepTimings = ['5 minutos', 'Mismo día', 'En menos de 24h'];
 ---
 
 <section id={data.id} class="section-agus section-dark">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-      <div class="accent-bar-light mx-auto"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
       <h2 class="section-title-light">{data.title}</h2>
-      <p class="text-white/70">{data.subtitle}</p>
+      <p class="text-brand-washDeep/80 text-base sm:text-lg">{data.subtitle}</p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 reveal-stagger">
+    <div class="grid md:grid-cols-3 gap-8 relative reveal-stagger">
+      <div
+        class="hidden md:block absolute top-14 left-[18%] right-[18%] h-px bg-gradient-to-r from-brand-orange/20 via-brand-orange/60 to-brand-orange/20 pointer-events-none"
+        aria-hidden="true"
+      >
+      </div>
+
       {
         data.steps.map((step, index) => (
-          <div class="reveal bg-white/5 border border-white/10 rounded-card p-8 text-center card-hover">
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-btn bg-brand-orange text-white text-sm font-bold mb-4">
-              {index + 1}
-            </span>
-            <i class:list={[step.icon, 'text-3xl text-brand-lightOrange mb-4 block']} />
-            <h3 class="font-semibold text-white">{step.title}</h3>
+          <div class="reveal relative z-10 bg-white/[0.06] border border-white/10 rounded-card p-8 transition-transform duration-300 ease-agus hover:-translate-y-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-btn bg-brand-orange text-white text-base font-extrabold shadow-glow-orange tabular-nums">
+                  {index + 1}
+                </div>
+                <span class="text-xs font-bold text-brand-lightOrange bg-brand-orange/15 px-3 py-1 rounded-btn">
+                  {stepTimings[index] ?? 'Rápido'}
+                </span>
+              </div>
+              <i
+                class:list={[step.icon, 'text-2xl text-brand-lightOrange mb-3 block']}
+                aria-hidden="true"
+              />
+              <h3 class="text-xl font-bold text-white mb-2.5">{step.title}</h3>
+              {step.description && (
+                <p class="text-sm text-brand-washDeep/80 leading-relaxed">{step.description}</p>
+              )}
+            </div>
           </div>
         ))
       }
+    </div>
+
+    <div class="reveal mt-12 text-center">
+      <a
+        href={whatsappUrl(whatsappMessages.commerce)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-agus"
+      >
+        <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+        <span>Empezar registro de mi comercio</span>
+      </a>
     </div>
   </div>
 </section>

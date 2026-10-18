@@ -9,43 +9,96 @@ interface Props {
 
 const { plan } = Astro.props;
 const waUrl = whatsappUrl(whatsappMessages.posPlan(plan.name));
+const isPopular = Boolean(plan.popular);
 ---
 
 <div
   class:list={[
-    'reveal relative flex flex-col p-8 rounded-card border bg-white card-hover h-full',
-    plan.popular
-      ? 'border-brand-orange border-2 shadow-md'
-      : 'border-brand-secondary/10',
+    'reveal relative flex flex-col p-8 sm:p-9 rounded-card card-hover h-full',
+    isPopular
+      ? 'bg-brand-dark text-white shadow-elevated-lg lg:-translate-y-2'
+      : 'spotlight-card bg-white text-brand-secondary shadow-elevated',
   ]}
 >
   {
-    plan.popular && (
-      <span class="absolute -top-3 left-6 bg-brand-orange text-white text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-btn">
+    isPopular && (
+      <span class="absolute -top-3.5 left-8 bg-brand-orange text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-btn shadow-glow-orange">
         Más popular
       </span>
     )
   }
 
-  <div class="mb-6 pt-2">
-    <h3 class="text-2xl font-bold text-brand-secondary">{plan.name}</h3>
-    <p class="text-sm text-brand-secondary/60 mt-1">{plan.tagline}</p>
+  <div class="mb-6 pt-1">
+    <h3
+      class:list={[
+        'text-2xl font-extrabold',
+        isPopular ? 'text-white' : 'text-brand-secondary',
+      ]}
+    >
+      {plan.name}
+    </h3>
+    <p
+      class:list={[
+        'text-sm mt-1',
+        isPopular ? 'text-brand-washDeep/80' : 'text-brand-secondary/75',
+      ]}
+    >
+      {plan.tagline}
+    </p>
   </div>
 
-  <div class="mb-6">
-    <span class="text-4xl font-bold text-brand-orange">{formatPrice(plan.price)}</span>
-    <span class="text-brand-secondary/50 text-sm">/mes</span>
+  <div class="mb-6 tabular-nums flex items-baseline gap-1.5">
+    <span
+      class:list={[
+        'text-4xl sm:text-5xl font-extrabold tracking-tight',
+        isPopular ? 'text-brand-lightOrange' : 'text-brand-orange',
+      ]}
+    >
+      {formatPrice(plan.price)}
+    </span>
+    <span
+      class:list={[
+        'text-sm font-medium',
+        isPopular ? 'text-brand-washDeep/70' : 'text-brand-secondary/65',
+      ]}
+    >
+      COP / mes
+    </span>
   </div>
 
-  <p class="text-xs text-brand-secondary/60 mb-6 pb-6 border-b border-brand-secondary/10">
-    Ideal para: <strong class="text-brand-secondary">{plan.idealFor}</strong>
+  <p
+    class:list={[
+      'text-xs mb-6 pb-6 border-b',
+      isPopular
+        ? 'text-brand-washDeep/80 border-white/10'
+        : 'text-brand-secondary/75 border-brand-secondary/10',
+    ]}
+  >
+    Ideal para:{' '}
+    <strong class:list={['font-bold', isPopular ? 'text-white' : 'text-brand-secondary']}>
+      {plan.idealFor}
+    </strong>
   </p>
 
-  <ul class="space-y-3 mb-8 flex-1">
+  <ul class="space-y-3.5 mb-9 flex-1">
     {
       plan.features.map((feature) => (
-        <li class="flex items-start gap-3 text-sm text-brand-secondary/80">
-          <i class="ri-check-line text-brand-orange text-lg shrink-0 mt-0.5" />
+        <li
+          class:list={[
+            'flex items-start gap-3 text-sm leading-relaxed',
+            isPopular ? 'text-brand-washDeep/90' : 'text-brand-secondary/85',
+          ]}
+        >
+          <span
+            class:list={[
+              'w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5',
+              isPopular
+                ? 'bg-brand-orange text-white'
+                : 'bg-brand-orange/15 text-brand-orange',
+            ]}
+          >
+            <i class="ri-check-line text-xs font-bold" aria-hidden="true" />
+          </span>
           <span>{feature}</span>
         </li>
       ))
@@ -57,13 +110,13 @@ const waUrl = whatsappUrl(whatsappMessages.posPlan(plan.name));
     target="_blank"
     rel="noopener noreferrer"
     class:list={[
-      'w-full text-center py-3 rounded-btn font-semibold transition-colors flex items-center justify-center gap-2',
-      plan.popular
-        ? 'bg-brand-orange text-white hover:bg-brand-darkOrange'
-        : 'bg-brand-secondary text-white hover:bg-brand-secondary/90',
+      'w-full text-center py-3.5 px-6 rounded-btn font-bold transition-all duration-300 ease-agus flex items-center justify-center gap-2',
+      isPopular
+        ? 'bg-brand-orange text-white hover:bg-brand-darkOrange shadow-glow-orange'
+        : 'bg-brand-ink text-white hover:bg-brand-orange',
     ]}
   >
-    <i class="ri-whatsapp-line text-xl" />
-    Elegir {plan.name}
+    <i class="ri-whatsapp-line text-xl" aria-hidden="true" />
+    <span>Elegir plan {plan.name}</span>
   </a>
 </div>

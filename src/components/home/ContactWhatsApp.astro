@@ -12,31 +12,52 @@ const { section, tabs } = Astro.props;
 
 <section id={section.id} class="section-agus section-orange">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
       <h2 class="section-title">{section.title}</h2>
-      <p class="text-brand-secondary/70">{section.subtitle}</p>
+      <p class="text-brand-secondary/80 text-base sm:text-lg">{section.subtitle}</p>
     </div>
 
     <div class="grid lg:grid-cols-5 gap-8">
-      <div class="lg:col-span-2 reveal space-y-4">
-        <div class="bg-white rounded-card border border-brand-secondary/10 p-6">
-          <div class="flex items-start gap-3 mb-4">
-            <i class="ri-mail-line text-xl text-brand-orange mt-0.5"></i>
+      <div class="lg:col-span-2 reveal space-y-5">
+        <div class="bg-white rounded-card shadow-elevated p-6 space-y-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-btn bg-brand-orange/10 text-brand-orange flex items-center justify-center shrink-0">
+              <i class="ri-mail-line text-lg" aria-hidden="true"></i>
+            </div>
             <div>
-              <p class="text-xs uppercase tracking-wide text-brand-secondary/50 mb-1">Email</p>
-              <a href={`mailto:${EMAIL}`} class="font-medium text-brand-secondary hover:text-brand-orange">{EMAIL}</a>
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-secondary/60 mb-0.5">
+                Correo electrónico
+              </p>
+              <a
+                href={`mailto:${EMAIL}`}
+                class="font-semibold text-brand-secondary hover:text-brand-orange transition-colors break-all"
+              >
+                {EMAIL}
+              </a>
             </div>
           </div>
-          <div class="flex items-start gap-3">
-            <i class="ri-phone-line text-xl text-brand-orange mt-0.5"></i>
+
+          <div class="flex items-start gap-3.5 pt-3 border-t border-brand-secondary/10">
+            <div class="w-10 h-10 rounded-btn bg-brand-orange/10 text-brand-orange flex items-center justify-center shrink-0">
+              <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+            </div>
             <div>
-              <p class="text-xs uppercase tracking-wide text-brand-secondary/50 mb-1">Teléfono</p>
-              <a href={whatsappUrl(whatsappMessages.general)} class="font-medium text-brand-secondary hover:text-brand-orange">+57 {WHATSAPP_DISPLAY}</a>
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand-secondary/60 mb-0.5">
+                Línea WhatsApp
+              </p>
+              <a
+                href={whatsappUrl(whatsappMessages.general)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-brand-secondary hover:text-brand-orange transition-colors tabular-nums"
+              >
+                +57 {WHATSAPP_DISPLAY}
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="rounded-card overflow-hidden border border-brand-secondary/10 h-64 lg:h-[290px]">
+        <div class="rounded-card overflow-hidden shadow-elevated h-64 lg:h-[270px]">
           <iframe
             src={section.mapSrc}
             title="Ubicación Agus App en Chinchiná"
@@ -47,8 +68,8 @@ const { section, tabs } = Astro.props;
         </div>
       </div>
 
-      <div class="lg:col-span-3 reveal">
-        <div class="bg-white rounded-card border border-brand-secondary/10 overflow-hidden">
+      <div class="lg:col-span-3 reveal flex flex-col justify-between gap-6">
+        <div class="bg-white rounded-card shadow-elevated overflow-hidden">
           <div class="flex border-b border-brand-secondary/10 overflow-x-auto" role="tablist">
             {
               tabs.map((tab, index) => (
@@ -58,10 +79,10 @@ const { section, tabs } = Astro.props;
                   data-contact-tab={tab.id}
                   aria-selected={index === 0 ? 'true' : 'false'}
                   class:list={[
-                    'flex-1 min-w-[120px] px-4 py-3 text-sm font-semibold transition-colors contact-tab',
+                    'flex-1 min-w-[130px] px-5 py-4 text-sm font-bold transition-colors contact-tab',
                     index === 0
                       ? 'text-brand-orange border-b-2 border-brand-orange bg-brand-orange/5'
-                      : 'text-brand-secondary/60 hover:text-brand-orange',
+                      : 'text-brand-secondary/65 hover:text-brand-orange',
                   ]}
                 >
                   {tab.label}
@@ -75,22 +96,38 @@ const { section, tabs } = Astro.props;
               <div
                 data-contact-panel={tab.id}
                 role="tabpanel"
-                class:list={['p-8', index !== 0 && 'hidden']}
+                class:list={['p-8 sm:p-10', index !== 0 && 'hidden']}
               >
-                <h3 class="text-xl font-bold text-brand-secondary mb-2">{tab.title}</h3>
-                <p class="text-brand-secondary/70 mb-6 leading-relaxed">{tab.description}</p>
+                <h3 class="text-2xl font-extrabold text-brand-secondary mb-3">{tab.title}</h3>
+                <p class="text-brand-secondary/80 mb-7 leading-relaxed">{tab.description}</p>
                 <a
                   href={whatsappUrl(whatsappMessages[tab.whatsappKey])}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="btn-agus"
                 >
-                  <i class="ri-whatsapp-line text-lg"></i>
-                  {tab.cta}
+                  <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+                  <span>{tab.cta}</span>
                 </a>
               </div>
             ))
           }
+        </div>
+
+        <!-- Direct shortcut to /app for customers wanting delivery -->
+        <div class="bg-brand-washDeep rounded-card p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-brand-secondary mb-1">
+              ¿Eres cliente y quieres hacer un pedido a domicilio?
+            </h3>
+            <p class="text-sm text-brand-secondary/80">
+              Pide en línea desde tu navegador o descarga la app en tu celular.
+            </p>
+          </div>
+          <a href="/app" class="btn-secondary shrink-0 text-sm">
+            <i class="ri-shopping-bag-3-line text-base" aria-hidden="true"></i>
+            <span>Ir a /app</span>
+          </a>
         </div>
       </div>
     </div>
@@ -112,7 +149,7 @@ const { section, tabs } = Astro.props;
         btn.classList.toggle('border-b-2', isActive);
         btn.classList.toggle('border-brand-orange', isActive);
         btn.classList.toggle('bg-brand-orange/5', isActive);
-        btn.classList.toggle('text-brand-secondary/60', !isActive);
+        btn.classList.toggle('text-brand-secondary/65', !isActive);
       });
 
       panels.forEach((panel) => {

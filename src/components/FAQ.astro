@@ -6,25 +6,35 @@ interface Props {
 const { faqs } = Astro.props;
 ---
 
-<div class="space-y-3">
+<div class="space-y-3.5">
   {
     faqs.map((faq, index) => (
-      <div class="reveal border border-brand-secondary/10 rounded-card overflow-hidden bg-white card-hover">
+      <div class="reveal rounded-card overflow-hidden bg-white shadow-elevated transition-shadow duration-300 hover:shadow-elevated-lg">
         <button
           type="button"
           data-faq-toggle={index}
           aria-expanded="false"
-          class="w-full text-left p-5 flex justify-between items-center gap-4 font-semibold text-brand-secondary hover:bg-brand-section/50 transition"
+          class="w-full text-left p-5 sm:p-6 flex justify-between items-center gap-4 font-bold text-brand-secondary hover:text-brand-orange transition-colors"
         >
-          <span>{faq.q}</span>
-          <i
-            data-faq-icon
-            class="ri-add-line text-2xl text-brand-orange transition-transform duration-200 shrink-0"
-          />
+          <span class="flex items-center gap-3.5">
+            <span class="w-8 h-8 rounded-btn bg-brand-washDeep text-brand-orange text-xs font-extrabold flex items-center justify-center shrink-0 tabular-nums">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span class="text-base sm:text-lg">{faq.q}</span>
+          </span>
+          <span class="w-8 h-8 rounded-full bg-brand-wash flex items-center justify-center shrink-0">
+            <i
+              data-faq-icon
+              class="ri-add-line text-xl text-brand-orange transition-transform duration-200"
+              aria-hidden="true"
+            />
+          </span>
         </button>
         <div data-faq-answer={index} class="faq-answer border-t border-brand-secondary/10">
           <div class="faq-answer-inner">
-            <p class="p-5 pt-4 text-sm text-brand-secondary/70 whitespace-pre-line">{faq.a}</p>
+            <p class="p-5 sm:p-6 pt-4 sm:pt-4 pl-5 sm:pl-[4.25rem] text-sm sm:text-base text-brand-secondary/80 leading-relaxed whitespace-pre-line">
+              {faq.a}
+            </p>
           </div>
         </div>
       </div>

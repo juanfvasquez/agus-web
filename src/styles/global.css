@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,10 +7,46 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-color: #eb5d1e #faf7f4;
+    scrollbar-width: thin;
   }
 
   body {
     @apply bg-brand-wash text-brand-secondary font-sans antialiased;
+    caret-color: #eb5d1e;
+  }
+
+  ::selection {
+    background-color: rgba(235, 93, 30, 0.2);
+    color: #0f172a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #faf7f4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #eb5d1e;
+    border-radius: 9999px;
+    border: 2px solid #faf7f4;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c94409;
+  }
+
+  :focus-visible {
+    outline: 2px solid #eb5d1e;
+    outline-offset: 3px;
+  }
+
+  a {
+    text-underline-offset: 4px;
   }
 
   h1,
@@ -18,20 +54,22 @@
   h3,
   h4 {
     @apply font-display font-bold text-brand-secondary;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 }
 
 @layer components {
   .btn-agus {
-    @apply inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-semibold px-6 py-3 rounded-btn hover:bg-brand-darkOrange transition-all duration-200 shadow-glow-orange hover:shadow-glow-orange-lg;
+    @apply inline-flex items-center justify-center gap-2.5 bg-brand-orange text-white font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-darkOrange transition-all duration-300 ease-agus shadow-glow-orange hover:shadow-glow-orange-lg hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-agus-outline {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-brand-orange text-brand-orange font-semibold px-6 py-3 rounded-btn hover:bg-brand-orange hover:text-white transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2.5 border border-brand-orange text-brand-orange font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-orange hover:text-white transition-all duration-300 ease-agus;
   }
 
   .btn-agus-ghost {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white font-semibold px-6 py-3 rounded-btn hover:bg-white/10 transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2.5 border border-white/35 text-white font-semibold px-6 py-3.5 rounded-btn hover:bg-white/15 transition-all duration-300 ease-agus;
   }
 
   .btn-primary {
@@ -39,39 +77,46 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 bg-white text-brand-orange font-semibold px-6 py-3 rounded-btn border border-brand-orange/20 hover:border-brand-orange hover:shadow-glow-orange transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2.5 bg-white text-brand-orange font-semibold px-6 py-3.5 rounded-btn shadow-elevated hover:shadow-glow-orange transition-all duration-300 ease-agus hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-brand-secondary/20 text-brand-secondary font-semibold px-6 py-3 rounded-btn hover:border-brand-orange hover:text-brand-orange transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2.5 border border-brand-secondary/20 text-brand-secondary font-semibold px-6 py-3.5 rounded-btn hover:border-brand-orange hover:text-brand-orange transition-colors duration-200;
   }
 
   .section-title {
-    @apply text-3xl sm:text-4xl font-bold text-brand-secondary mb-3;
+    @apply text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold text-brand-secondary mb-4 leading-[1.12];
   }
 
   .section-title-light {
-    @apply text-3xl sm:text-4xl font-bold text-white mb-3;
+    @apply text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold text-white mb-4 leading-[1.12];
   }
 
   .section-agus {
-    @apply py-16 lg:py-24;
+    @apply py-20 lg:py-28;
   }
 
   .hero-agus {
-    @apply bg-gradient-to-br from-brand-orange via-brand-darkOrange to-brand-dark text-white relative overflow-hidden;
+    background: radial-gradient(circle at 82% 22%, rgba(255, 122, 66, 0.42) 0%, transparent 48%),
+      linear-gradient(135deg, #eb5d1e 0%, #c94409 46%, #111827 100%);
+    @apply text-white relative overflow-hidden;
   }
 
   .section-orange {
-    @apply bg-brand-wash border-t-[3px] border-brand-orange;
+    background: radial-gradient(ellipse at 50% 0%, rgba(235, 93, 30, 0.06) 0%, transparent 70%),
+      #faf7f4;
+    @apply border-t border-brand-orange/15;
   }
 
   .section-wash-deep {
-    @apply bg-brand-washDeep;
+    background: radial-gradient(circle at 90% 10%, rgba(235, 93, 30, 0.08) 0%, transparent 55%),
+      #fff0e6;
   }
 
   .section-dark {
-    @apply bg-brand-dark text-white;
+    background: radial-gradient(ellipse at 50% 0%, rgba(235, 93, 30, 0.16) 0%, transparent 65%),
+      #111827;
+    @apply text-white relative overflow-hidden;
   }
 
   .surface-section {
@@ -79,29 +124,67 @@
   }
 
   .card-hover {
-    @apply transition-all duration-200 hover:shadow-glow-orange hover:-translate-y-0.5;
+    @apply transition-all duration-300 ease-agus hover:-translate-y-1 hover:shadow-elevated-lg;
   }
 
   .accent-bar {
-    @apply w-12 h-1 bg-brand-orange rounded-full mb-4;
+    @apply w-12 h-1 bg-brand-orange rounded-full mb-5;
   }
 
   .accent-bar-light {
-    @apply w-12 h-1 bg-white/80 rounded-full mb-4;
+    @apply w-12 h-1 bg-white/85 rounded-full mb-5;
   }
 
   .float-soft {
     @apply animate-floatSoft;
   }
+
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(235, 93, 30, 0.1),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+
+  .tilt-3d-stage {
+    perspective: 1100px;
+  }
+
+  .tilt-3d-body {
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
 }
 
 @layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
   .reveal {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
     transition:
-      opacity 0.5s ease-out,
-      transform 0.5s ease-out;
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .reveal.is-visible {
@@ -113,23 +196,23 @@
     transition-delay: 0ms;
   }
   .reveal-stagger > .reveal:nth-child(2) {
-    transition-delay: 60ms;
+    transition-delay: 70ms;
   }
   .reveal-stagger > .reveal:nth-child(3) {
-    transition-delay: 120ms;
+    transition-delay: 140ms;
   }
   .reveal-stagger > .reveal:nth-child(4) {
-    transition-delay: 180ms;
+    transition-delay: 210ms;
   }
   .reveal-stagger > .reveal:nth-child(5) {
-    transition-delay: 240ms;
+    transition-delay: 280ms;
   }
   .reveal-stagger > .reveal:nth-child(6) {
-    transition-delay: 300ms;
+    transition-delay: 350ms;
   }
 
   header.is-scrolled {
-    @apply bg-brand-darkOrange shadow-lg;
+    @apply bg-brand-dark/95 backdrop-blur-md shadow-elevated border-b border-white/10;
   }
 
   header.is-scrolled .header-inner {
@@ -146,7 +229,11 @@
   }
 
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    animation: marquee 38s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
   }
 }
 
@@ -177,7 +264,7 @@
 .faq-answer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease-out;
+  transition: grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq-answer.is-open {

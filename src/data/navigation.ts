@@ -1,21 +1,23 @@
 import type { NavLink } from './site';
 
 export const homeNav: NavLink[] = [
-  { href: '/#app', label: 'App' },
+  { href: '/app', label: 'Pedir a domicilio' },
   { href: '/#business', label: 'Comercios' },
+  { href: '/#products', label: 'Soluciones' },
   { href: '/#operators', label: 'Operadores' },
-  { href: '/#clients', label: 'Clientes' },
+  { href: '/#clients', label: 'Aliados' },
   { href: '/#contact', label: 'Contacto' },
 ];
 
 export const footerProductLinks: NavLink[] = [
-  { href: '/deliveries', label: 'Agus Deliveries' },
-  { href: '/pos', label: 'Agus POS' },
+  { href: '/app', label: 'Agus App (Pedir a domicilio)' },
+  { href: '/deliveries', label: 'Agus Deliveries (Comercios)' },
+  { href: '/pos', label: 'Agus POS (Restaurantes)' },
 ];
 
 export const footerHomeLinks: NavLink[] = [
   { href: '/#hero', label: 'Inicio' },
-  { href: '/#app', label: 'Descarga la app' },
+  { href: '/app', label: 'Descargar App y Pedidos Web' },
   { href: '/#business', label: 'Comercios' },
   { href: '/#operators', label: 'Operadores' },
   { href: '/#contact', label: 'Contacto' },

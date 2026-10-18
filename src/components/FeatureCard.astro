@@ -4,22 +4,64 @@ interface Props {
   title: string;
   description: string;
   wide?: boolean;
+  badge?: string;
+  dark?: boolean;
 }
 
-const { icon, title, description, wide = false } = Astro.props;
+const { icon, title, description, wide = false, badge, dark = false } = Astro.props;
 ---
 
 <div
   class:list={[
-    'reveal p-6 bg-white rounded-card border border-brand-secondary/10 card-hover',
+    'reveal p-7 sm:p-8 rounded-card card-hover flex flex-col justify-between',
     wide && 'md:col-span-2 lg:col-span-2',
+    dark
+      ? 'bg-brand-dark text-white shadow-elevated-lg'
+      : 'spotlight-card bg-white text-brand-secondary shadow-elevated',
   ]}
 >
-  <div
-    class="w-11 h-11 bg-brand-orange/10 text-brand-orange rounded-btn flex items-center justify-center text-xl mb-4"
-  >
-    <i class={icon}></i>
+  <div class="relative z-10">
+    <div class="flex items-center justify-between gap-3 mb-5">
+      <div
+        class:list={[
+          'w-12 h-12 rounded-btn flex items-center justify-center text-2xl',
+          dark
+            ? 'bg-brand-orange text-white shadow-glow-orange'
+            : 'bg-brand-washDeep text-brand-orange',
+        ]}
+      >
+        <i class={icon} aria-hidden="true"></i>
+      </div>
+      {
+        badge && (
+          <span
+            class:list={[
+              'text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-btn',
+              dark
+                ? 'bg-white/10 text-brand-lightOrange'
+                : 'bg-brand-washDeep text-brand-orange',
+            ]}
+          >
+            {badge}
+          </span>
+        )
+      }
+    </div>
+    <h3
+      class:list={[
+        'text-xl font-extrabold mb-2.5',
+        dark ? 'text-white' : 'text-brand-secondary',
+      ]}
+    >
+      {title}
+    </h3>
+    <p
+      class:list={[
+        'text-sm sm:text-base leading-relaxed',
+        dark ? 'text-brand-washDeep/85' : 'text-brand-secondary/80',
+      ]}
+    >
+      {description}
+    </p>
   </div>
-  <h3 class="text-lg font-semibold text-brand-secondary mb-2">{title}</h3>
-  <p class="text-brand-secondary/65 text-sm leading-relaxed">{description}</p>
 </div>

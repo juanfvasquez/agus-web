@@ -11,17 +11,36 @@ const { title, subtitle, message } = Astro.props;
 const waUrl = whatsappUrl(message);
 ---
 
-<section class="section-agus bg-brand-orange text-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h2>
-    {subtitle && <p class="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{subtitle}</p>}
-    <a
-      href={waUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 bg-white text-brand-orange font-semibold px-6 py-3 rounded-btn hover:bg-brand-lightBg transition-colors"
-    >
-      <i class="ri-whatsapp-line text-xl"></i> Escríbenos por WhatsApp
-    </a>
+<section class="py-16 lg:py-24 bg-brand-wash">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal hero-agus rounded-card p-8 sm:p-12 lg:p-16 shadow-elevated-lg relative overflow-hidden">
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold text-white mb-4 leading-tight">
+          {title}
+        </h2>
+        {
+          subtitle && (
+            <p class="text-base sm:text-lg text-white/90 mb-9 max-w-2xl mx-auto leading-relaxed">
+              {subtitle}
+            </p>
+          )
+        }
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-agus bg-white text-brand-orange hover:bg-brand-wash hover:text-brand-darkOrange shadow-glow-orange-lg"
+          >
+            <i class="ri-whatsapp-line text-xl" aria-hidden="true"></i>
+            <span>Hablar por WhatsApp ahora</span>
+          </a>
+          <a href="/app" class="btn-agus-ghost">
+            <i class="ri-shopping-bag-3-line text-lg" aria-hidden="true"></i>
+            <span>Ir a /app (Pedidos y Tiendas)</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

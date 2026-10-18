@@ -19,8 +19,6 @@ interface Props {
 }
 
 const {
-  title = '¿Listo para ser parte de Agus?',
-  subtitle = 'Contáctanos y descubre cómo podemos ayudarte.',
   ctaText = 'Escríbenos por WhatsApp',
   ctaMessage = whatsappMessages.general,
 } = Astro.props;
@@ -28,26 +26,26 @@ const {
 const waUrl = whatsappUrl(ctaMessage);
 ---
 
-<footer class="bg-brand-secondary text-white">
+<footer class="bg-brand-dark text-white border-t border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <div class="lg:col-span-1 reveal">
-        <div class="inline-block p-1.5 rounded-btn bg-white/10 mb-4">
+        <a href="/" class="inline-block p-1.5 rounded-btn bg-white/10 mb-4">
           <img src="/assets/white-logo-agus.png" alt="Agus App" class="h-9 w-auto" />
-        </div>
-        <p class="text-white/70 text-sm italic mb-2">"{TAGLINE}"</p>
-        <p class="text-white/50 text-sm">{LOCATION}</p>
+        </a>
+        <p class="text-brand-washDeep/85 text-sm italic mb-2">"{TAGLINE}"</p>
+        <p class="text-brand-washDeep/65 text-sm">{LOCATION}</p>
       </div>
 
       <div class="reveal">
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Productos</h3>
-        <ul class="space-y-2">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Soluciones</h3>
+        <ul class="space-y-2.5">
           {
             footerProductLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class="text-white/70 hover:text-brand-lightOrange transition-colors text-sm"
+                  class="text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors text-sm"
                 >
                   {link.label}
                 </a>
@@ -58,14 +56,14 @@ const waUrl = whatsappUrl(ctaMessage);
       </div>
 
       <div class="reveal">
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Agus App</h3>
-        <ul class="space-y-2">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Navegación</h3>
+        <ul class="space-y-2.5">
           {
             footerHomeLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class="text-white/70 hover:text-brand-lightOrange transition-colors text-sm"
+                  class="text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors text-sm"
                 >
                   {link.label}
                 </a>
@@ -76,24 +74,26 @@ const waUrl = whatsappUrl(ctaMessage);
       </div>
 
       <div class="reveal">
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/90 mb-4">Contacto</h3>
+        <h3 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Contacto</h3>
         <ul class="space-y-3 text-sm">
           <li>
             <a
               href={whatsappUrl(whatsappMessages.general)}
-              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors tabular-nums"
             >
-              <i class="ri-whatsapp-line text-brand-lightOrange"></i>
-              {WHATSAPP_DISPLAY}
+              <i class="ri-whatsapp-line text-brand-lightOrange" aria-hidden="true"></i>
+              <span>{WHATSAPP_DISPLAY}</span>
             </a>
           </li>
           <li>
             <a
               href={`mailto:${EMAIL}`}
-              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+              class="flex items-center gap-2 text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors break-all"
             >
-              <i class="ri-mail-line text-brand-lightOrange"></i>
-              {EMAIL}
+              <i class="ri-mail-line text-brand-lightOrange" aria-hidden="true"></i>
+              <span>{EMAIL}</span>
             </a>
           </li>
           <li>
@@ -101,10 +101,10 @@ const waUrl = whatsappUrl(ctaMessage);
               href={INSTAGRAM}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+              class="flex items-center gap-2 text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors"
             >
-              <i class="ri-instagram-line text-brand-lightOrange"></i>
-              @agus.app
+              <i class="ri-instagram-line text-brand-lightOrange" aria-hidden="true"></i>
+              <span>@agus.app</span>
             </a>
           </li>
           <li>
@@ -112,21 +112,32 @@ const waUrl = whatsappUrl(ctaMessage);
               href={WEBSITE}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 text-white/70 hover:text-brand-lightOrange transition-colors"
+              class="flex items-center gap-2 text-brand-washDeep/80 hover:text-brand-lightOrange transition-colors"
             >
-              <i class="ri-global-line text-brand-lightOrange"></i>
-              www.agusapp.com
+              <i class="ri-global-line text-brand-lightOrange" aria-hidden="true"></i>
+              <span>www.agusapp.com</span>
             </a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-white/50 text-sm">Disponible en App Store y Google Play</p>
-      <a href={waUrl} target="_blank" rel="noopener noreferrer" class="btn-agus text-sm">
-        <i class="ri-whatsapp-line"></i> {ctaText}
-      </a>
+    <div
+      class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+    >
+      <p class="text-brand-washDeep/70 text-sm">
+        Disponible en App Store, Google Play y Pedidos Web
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="/app" class="btn-agus-ghost text-sm py-2.5 px-4">
+          <i class="ri-shopping-bag-3-line" aria-hidden="true"></i>
+          <span>Pedir / Descargar App</span>
+        </a>
+        <a href={waUrl} target="_blank" rel="noopener noreferrer" class="btn-agus text-sm py-2.5 px-5">
+          <i class="ri-whatsapp-line" aria-hidden="true"></i>
+          <span>{ctaText}</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

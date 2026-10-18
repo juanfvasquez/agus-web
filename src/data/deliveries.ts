@@ -3,7 +3,9 @@ export const benefits = [
     icon: 'ri-store-2-line',
     title: 'Canal digital propio sin inversión',
     description:
-      'Tienes presencia en una app y web profesional sin tener que desarrollar nada.',
+      'Tienes presencia inmediata en una aplicación móvil y plataforma web profesional sin gastar en desarrollo ni mantenimiento.',
+    wide: true,
+    badge: 'App + Web para tu marca',
   },
   {
     icon: 'ri-user-add-line',
@@ -21,7 +23,10 @@ export const benefits = [
     icon: 'ri-e-bike-2-line',
     title: 'Logística de domicilios incluida',
     description:
-      'Domiciliarios asignados automáticamente a cada pedido. No necesitas tener tu propia flota.',
+      'Domiciliarios asignados automáticamente a cada pedido según cercanía. No necesitas tener ni administrar tu propia flota.',
+    wide: true,
+    badge: 'Asignación automática',
+    dark: true,
   },
   {
     icon: 'ri-motorbike-line',
@@ -31,7 +36,7 @@ export const benefits = [
   },
   {
     icon: 'ri-restaurant-2-line',
-    title: 'Menú online',
+    title: 'Menú online interactivo',
     description:
       'Tu carta digital siempre actualizada con fotos, precios y variantes en tiempo real para compartir por enlace o redes.',
   },
@@ -39,7 +44,7 @@ export const benefits = [
     icon: 'ri-bar-chart-box-line',
     title: 'Dashboard con tus métricas',
     description:
-      'Controla tus ventas, pedidos y productos más vendidos desde la pantalla de inicio de tu app.',
+      'Controla tus ventas, horarios pico y productos más vendidos desde la pantalla de inicio de tu app.',
   },
   {
     icon: 'ri-notification-3-line',
@@ -51,7 +56,9 @@ export const benefits = [
     icon: 'ri-megaphone-line',
     title: 'Visibilidad en app y redes sociales',
     description:
-      'Tu negocio aparece en el catálogo de Agus. Además, contamos con espacios en redes sociales como posts y banners para promocionar tus productos a nuestra comunidad.',
+      'Tu negocio destaca en el catálogo de Agus y cuenta con espacios promocionales en nuestras redes sociales (posts y banners) ante toda la comunidad.',
+    wide: true,
+    badge: 'Marketing incluido',
   },
 ];
 

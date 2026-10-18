@@ -8,6 +8,7 @@ import ScrollReveal from '../components/ScrollReveal.astro';
 import PricingCard from '../components/PricingCard.astro';
 import PosDeviceMockup from '../components/pos/PosDeviceMockup.astro';
 import PricingComparison from '../components/PricingComparison.astro';
+import ThreeHeroScene from '../components/ThreeHeroScene.astro';
 import { whatsappUrl, whatsappMessages } from '../data/site';
 import { posNav } from '../data/navigation';
 import {
@@ -28,31 +29,32 @@ import {
   <Header currentPage="pos" navLinks={posNav} />
 
   <main>
-    <section class="hero-agus section-agus border-b-4 border-brand-lightOrange">
+    <section class="hero-agus section-agus border-b border-white/15">
+      <ThreeHeroScene />
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="reveal">
-            <p class="text-brand-lightOrange font-semibold text-sm uppercase tracking-widest mb-4">
-              Sistema POS
-            </p>
-            <div class="accent-bar-light"></div>
-            <h1 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold leading-tight text-white mb-5">
+            <h1
+              class="text-3xl sm:text-5xl lg:text-[3.1rem] font-extrabold leading-[1.08] text-white mb-5"
+            >
               El POS que pone tu negocio bajo control total
             </h1>
-            <p class="text-lg text-white/85 max-w-xl mb-8 leading-relaxed">
+            <p class="text-lg text-white/90 max-w-xl mb-8 leading-relaxed">
               Mesas, comandas, inventario, caja y empleados — todo en tiempo real, desde cualquier
               dispositivo.
             </p>
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-3.5">
               <a
                 href={whatsappUrl(whatsappMessages.pos)}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-agus bg-white text-brand-orange hover:bg-brand-wash"
               >
-                <i class="ri-whatsapp-line text-lg"></i> Solicitar demo
+                <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+                <span>Solicitar demo personalizada</span>
               </a>
-              <a href="#planes" class="btn-agus-ghost">Ver planes</a>
+              <a href="#planes" class="btn-agus-ghost">Ver planes y precios</a>
             </div>
           </div>
 
@@ -63,16 +65,16 @@ import {
       </div>
     </section>
 
-    <section class="py-8 bg-brand-washDeep border-b border-brand-orange/20">
+    <section class="py-8 bg-brand-dark text-white border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 reveal-stagger">
           {
             valueProps.map((prop) => (
-              <div class="reveal flex items-center gap-3 justify-center lg:justify-start">
-                <div class="w-10 h-10 bg-brand-lightBg rounded-xl flex items-center justify-center shrink-0">
-                  <i class:list={[`${prop.icon} text-brand-orange text-xl`]} />
+              <div class="reveal flex items-center gap-3.5 justify-center lg:justify-start">
+                <div class="w-11 h-11 bg-brand-orange/20 rounded-btn flex items-center justify-center shrink-0">
+                  <i class:list={[`${prop.icon} text-brand-lightOrange text-xl`]} aria-hidden="true" />
                 </div>
-                <span class="text-sm font-medium text-brand-secondary/80">{prop.text}</span>
+                <span class="text-sm font-bold text-white/90">{prop.text}</span>
               </div>
             ))
           }
@@ -80,26 +82,42 @@ import {
       </div>
     </section>
 
-    <!-- Problem → Solution -->
+    <!-- Problem → Solution Before/After Matrix -->
     <section class="section-agus section-orange">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title">De problemas reales a soluciones concretas</h2>
-          <p class="text-brand-secondary/70">
-            Diseñamos Agus POS para resolver los dolores de cabeza que enfrentan restaurantes y
-            comercios cada día.
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
+            Diseñamos Agus POS para resolver los dolores de cabeza que enfrentan restaurantes, cafés y
+            comercios en cada turno.
           </p>
         </ScrollReveal>
 
         <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
           {
             problemSolutions.map((item) => (
-              <div class="reveal bg-brand-section p-8 rounded-card border border-brand-secondary/10 card-hover">
-                <div class="w-12 h-12 bg-brand-orange/10 rounded-btn flex items-center justify-center mb-4">
-                  <i class:list={[`${item.icon} text-2xl text-brand-orange`]} />
+              <div class="reveal spotlight-card bg-white rounded-card shadow-elevated card-hover overflow-hidden flex flex-col justify-between">
+                <div class="p-7 pb-5 border-b border-brand-secondary/10 bg-brand-wash/60">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-secondary/60 mb-2">
+                    <i class="ri-indeterminate-circle-line text-sm text-brand-darkOrange" aria-hidden="true" />
+                    <span>Operación tradicional</span>
+                  </span>
+                  <p class="text-base font-semibold text-brand-secondary/75 line-through decoration-brand-orange/50">
+                    {item.problem}
+                  </p>
                 </div>
-                <p class="text-sm text-brand-secondary/50 font-medium mb-2">{item.problem}</p>
-                <p class="text-lg font-semibold text-brand-secondary">{item.solution}</p>
+
+                <div class="p-7 pt-6 bg-white flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="w-12 h-12 bg-brand-washDeep rounded-btn flex items-center justify-center mb-4">
+                      <i class:list={[`${item.icon} text-2xl text-brand-orange`]} aria-hidden="true" />
+                    </div>
+                    <span class="inline-block text-xs font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-500/15 px-2.5 py-0.5 rounded-full mb-2">
+                      Con Agus POS
+                    </span>
+                    <h3 class="text-xl font-extrabold text-brand-secondary">{item.solution}</h3>
+                  </div>
+                </div>
               </div>
             ))
           }
@@ -111,50 +129,65 @@ import {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title">Todo lo que necesitas, en un solo sistema</h2>
-          <p class="text-brand-secondary/70">
-            Módulos potentes que crecen contigo. Empieza con lo esencial y escala cuando lo
-            necesites.
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
+            Módulos potentes que crecen contigo. Empieza con lo esencial y escala cuando tu operación lo
+            requiera.
           </p>
         </ScrollReveal>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-7 reveal-stagger">
           {
-            modules.map((mod) => (
-              <div class="reveal p-6 rounded-card bg-white border border-brand-secondary/10 card-hover">
-                <div class="flex items-center justify-between mb-4">
-                  <div class="w-11 h-11 bg-brand-orange/10 text-brand-orange rounded-btn flex items-center justify-center text-xl">
-                    <i class={mod.icon}></i>
+            modules.map((mod, idx) => {
+              const isHighlight = idx === 1 || idx === 2;
+              return (
+                <div class="reveal spotlight-card p-7 rounded-card bg-white shadow-elevated card-hover flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between mb-5">
+                      <div class="w-12 h-12 bg-brand-washDeep text-brand-orange rounded-btn flex items-center justify-center text-2xl">
+                        <i class={mod.icon} aria-hidden="true" />
+                      </div>
+                      <span
+                        class:list={[
+                          'text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-btn',
+                          isHighlight
+                            ? 'bg-brand-orange text-white'
+                            : 'bg-brand-section text-brand-secondary',
+                        ]}
+                      >
+                        {mod.plan}+
+                      </span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-brand-secondary mb-4">{mod.title}</h3>
+                    <ul class="space-y-2.5">
+                      {mod.features.map((f) => (
+                        <li class="text-sm text-brand-secondary/85 flex items-start gap-2.5 font-medium">
+                          <i
+                            class="ri-checkbox-circle-fill text-brand-orange shrink-0 mt-0.5"
+                            aria-hidden="true"
+                          />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <span class="text-xs font-semibold uppercase tracking-wide bg-brand-section px-2 py-1 rounded-btn text-brand-orange">
-                    {mod.plan}+
-                  </span>
                 </div>
-                <h3 class="text-lg font-bold mb-3">{mod.title}</h3>
-                <ul class="space-y-2">
-                  {mod.features.map((f) => (
-                    <li class="text-sm text-brand-secondary/70 flex items-start gap-2">
-                      <i class="ri-check-line text-brand-orange shrink-0 mt-0.5"></i>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
+              );
+            })
           }
         </div>
       </div>
     </section>
 
-    <section id="planes" class="section-agus section-wash-deep border-t border-brand-orange/20">
+    <section id="planes" class="section-agus section-wash-deep border-t border-brand-orange/15">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title">Elige el plan perfecto para tu negocio</h2>
-          <p class="text-brand-secondary/70">
-            Precios transparentes en pesos colombianos. Sin sorpresas, sin permanencia mínima.
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
+            Precios transparentes en pesos colombianos. Sin costos ocultos ni cláusulas de permanencia.
           </p>
         </ScrollReveal>
 
-        <div class="grid lg:grid-cols-3 gap-6 items-stretch reveal-stagger">
+        <div class="grid lg:grid-cols-3 gap-8 items-stretch reveal-stagger">
           {plans.map((plan) => <PricingCard plan={plan} />)}
         </div>
       </div>
@@ -163,9 +196,9 @@ import {
     <section id="comparativa" class="section-agus section-orange">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title">Comparativa detallada</h2>
-          <p class="text-brand-secondary/70">
-            Encuentra exactamente lo que incluye cada plan y elige con confianza.
+          <h2 class="section-title">Comparativa detallada de planes</h2>
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
+            Revisa cada módulo y capacidad incluida para elegir con total confianza.
           </p>
         </ScrollReveal>
 
@@ -177,18 +210,22 @@ import {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title-light">Empieza en 3 simples pasos</h2>
-          <p class="text-white/70">De la demo al primer pedido en menos de 48 horas.</p>
+          <p class="text-brand-washDeep/80 text-base sm:text-lg">
+            De la demostración inicial al primer pedido facturado en menos de 48 horas.
+          </p>
         </ScrollReveal>
 
         <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
           {
             posOnboardingSteps.map((step) => (
-              <div class="reveal text-center bg-white/5 border border-white/10 p-8 rounded-card card-hover">
-                <span class="inline-flex w-11 h-11 bg-brand-orange text-white rounded-btn items-center justify-center font-bold text-lg mb-6">
+              <div class="reveal bg-white/[0.06] border border-white/10 p-8 rounded-card transition-transform duration-300 ease-agus hover:-translate-y-1">
+                <span class="inline-flex w-12 h-12 bg-brand-orange text-white rounded-btn items-center justify-center font-extrabold text-lg mb-6 shadow-glow-orange tabular-nums">
                   {step.step}
                 </span>
                 <h3 class="text-xl font-bold mb-3 text-white">{step.title}</h3>
-                <p class="text-white/70 text-sm">{step.description}</p>
+                <p class="text-brand-washDeep/80 text-sm sm:text-base leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             ))
           }
@@ -200,7 +237,9 @@ import {
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center mb-16">
           <h2 class="section-title">Preguntas Frecuentes</h2>
-          <p class="text-brand-secondary/70">Todo lo que necesitas saber sobre Agus POS.</p>
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
+            Todo lo que necesitas saber sobre la implementación y soporte de Agus POS.
+          </p>
         </ScrollReveal>
 
         <FAQ faqs={posFaqs} />

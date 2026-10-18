@@ -25,7 +25,7 @@ export const whatsappMessages = {
   commerce: 'Hola, quiero inscribir mi negocio en Agus App',
 };
 
-export type ProductPage = 'home' | 'deliveries' | 'pos';
+export type ProductPage = 'home' | 'deliveries' | 'pos' | 'app';
 
 export interface NavLink {
   href: string;
@@ -33,6 +33,7 @@ export interface NavLink {
 }
 
 export const productLinks = [
+  { href: '/app', label: 'Pedir / App', id: 'app' as const },
   { href: '/deliveries', label: 'Deliveries', id: 'deliveries' as const },
   { href: '/pos', label: 'POS', id: 'pos' as const },
 ];

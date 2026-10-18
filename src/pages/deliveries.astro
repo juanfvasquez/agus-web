@@ -6,6 +6,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import ThreeHeroScene from '../components/ThreeHeroScene.astro';
 import { whatsappUrl, whatsappMessages, TAGLINE } from '../data/site';
 import { deliveriesNav } from '../data/navigation';
 import {
@@ -25,39 +26,52 @@ import {
   <Header currentPage="deliveries" navLinks={deliveriesNav} />
 
   <main>
-    <section class="hero-agus section-agus border-b-4 border-brand-lightOrange">
+    <section class="hero-agus section-agus border-b border-white/15">
+      <ThreeHeroScene />
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
+        <div class="grid lg:grid-cols-[1.08fr_0.92fr] gap-12 items-center">
           <div class="reveal">
-            <p class="text-brand-lightOrange font-semibold text-sm uppercase tracking-widest mb-4">
-              Agus Deliveries
-            </p>
-            <div class="accent-bar-light"></div>
-            <h1 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-extrabold leading-tight text-white mb-5">
+            <h1
+              class="text-3xl sm:text-5xl lg:text-[3.1rem] font-extrabold leading-[1.08] text-white mb-5"
+            >
               Conectamos tu negocio con clientes que ya buscan lo que vendes
             </h1>
-            <p class="text-lg text-white/85 max-w-xl mb-3 leading-relaxed">
+            <p class="text-lg text-white/90 max-w-xl mb-4 leading-relaxed">
               Directo en su celular. Tú te enfocas en preparar los pedidos, nosotros nos encargamos
-              del resto.
+              de la tecnología y la entrega.
             </p>
-            <p class="text-sm italic text-white/60 mb-8">"{TAGLINE}"</p>
-            <a
-              href={whatsappUrl(whatsappMessages.deliveries)}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-agus bg-white text-brand-orange hover:bg-brand-wash"
-            >
-              <i class="ri-whatsapp-line text-lg"></i> Escríbenos por WhatsApp
-            </a>
+            <p class="text-sm italic text-brand-washDeep/80 mb-8">
+              "{TAGLINE}" — Agus Deliveries
+            </p>
+            <div class="flex flex-wrap gap-3.5">
+              <a
+                href={whatsappUrl(whatsappMessages.deliveries)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-agus bg-white text-brand-orange hover:bg-brand-wash"
+              >
+                <i class="ri-whatsapp-line text-lg" aria-hidden="true"></i>
+                <span>Vincular mi comercio</span>
+              </a>
+              <a href="/app" class="btn-agus-ghost">
+                <i class="ri-shopping-bag-3-line text-lg" aria-hidden="true"></i>
+                <span>Ver app de clientes (/app)</span>
+              </a>
+            </div>
           </div>
 
           <div class="reveal flex justify-center lg:justify-end">
-            <img
-              src="/img/phone-app.png"
-              alt="App de comercios Agus"
-              class="max-w-xs w-full float-soft drop-shadow-2xl"
-              loading="eager"
-            />
+            <div class="tilt-3d-stage" data-tilt-stage data-tilt-max="7">
+              <div class="tilt-3d-body" data-tilt-body>
+                <img
+                  src="/img/phone-app.png"
+                  alt="App de comercios Agus"
+                  class="max-w-xs w-full float-soft drop-shadow-2xl"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -67,13 +81,13 @@ import {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title">¿Qué gana tu negocio?</h2>
-          <p class="text-brand-secondary/70">
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
             Accede a una solución integral pensada para hacer crecer tus ventas digitales sin
-            complicaciones.
+            complicaciones ni costos fijos.
           </p>
         </ScrollReveal>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-stagger">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 reveal-stagger">
           {
             benefits.map((benefit) => (
               <FeatureCard
@@ -81,6 +95,8 @@ import {
                 title={benefit.title}
                 description={benefit.description}
                 wide={benefit.wide}
+                badge={benefit.badge}
+                dark={benefit.dark}
               />
             ))
           }
@@ -91,8 +107,8 @@ import {
     <section id="plataforma" class="section-agus surface-section border-y border-brand-orange/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title">Tu Plataforma</h2>
-          <p class="text-brand-secondary/70">
+          <h2 class="section-title">Tu Plataforma de Control</h2>
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
             La app de comercios de Agus te da control total sobre tu negocio digital. Fácil de usar,
             en tiempo real, siempre disponible.
           </p>
@@ -100,30 +116,37 @@ import {
 
         <div class="grid lg:grid-cols-3 gap-8 relative reveal-stagger">
           <div
-            class="hidden lg:block absolute top-1/2 left-[16.66%] right-[16.66%] h-0.5 bg-gradient-to-r from-brand-orange/20 via-brand-orange to-brand-orange/20 -translate-y-1/2 z-0"
+            class="hidden lg:block absolute top-1/2 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-brand-orange/20 via-brand-orange to-brand-orange/20 -translate-y-1/2 z-0"
+            aria-hidden="true"
           >
           </div>
           {
             platformFeatures.map((feature) => (
-              <div class="reveal relative z-10 bg-white p-6 rounded-card border border-brand-secondary/10 card-hover">
-                <div class="h-10 w-10 bg-brand-orange/10 text-brand-orange rounded-btn flex items-center justify-center font-bold mb-4">
+              <div class="reveal spotlight-card relative z-10 bg-white p-8 rounded-card shadow-elevated card-hover">
+                <div class="h-11 w-11 bg-brand-washDeep text-brand-orange rounded-btn flex items-center justify-center font-extrabold mb-5 tabular-nums">
                   {feature.step}
                 </div>
-                <h3 class="text-lg font-bold mb-2">{feature.title}</h3>
-                <p class="text-brand-secondary/65 text-sm">{feature.description}</p>
+                <h3 class="text-xl font-extrabold text-brand-secondary mb-2.5">{feature.title}</h3>
+                <p class="text-brand-secondary/80 text-sm sm:text-base leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             ))
           }
         </div>
 
         <div
-          class="reveal mt-12 bg-brand-section p-8 rounded-card border border-brand-secondary/10 grid md:grid-cols-3 gap-6"
+          class="reveal mt-12 bg-brand-dark text-white p-8 rounded-card shadow-elevated-lg grid md:grid-cols-3 gap-6"
         >
           {
             platformExtras.map((extra) => (
-              <div class="flex items-center gap-3">
-                <i class:list={[`${extra.icon} text-3xl`, extra.color]} />
-                <span class="text-sm font-medium">{extra.text}</span>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-btn bg-white/10 flex items-center justify-center shrink-0">
+                  <i class:list={[`${extra.icon} text-2xl`, extra.color]} aria-hidden="true" />
+                </div>
+                <span class="text-sm font-semibold text-brand-washDeep/90 leading-snug">
+                  {extra.text}
+                </span>
               </div>
             ))
           }
@@ -134,52 +157,128 @@ import {
     <section id="modelo" class="section-agus section-wash-deep">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title">Nuestro Modelo</h2>
-          <p class="text-xl font-bold text-brand-orange">Solo pagas cuando vendes.</p>
+          <h2 class="section-title">Nuestro Modelo Transparente</h2>
+          <p class="text-xl font-extrabold text-brand-orange">Solo pagas cuando vendes.</p>
         </ScrollReveal>
 
         <div
-          class="reveal bg-brand-dark text-white rounded-card p-8 lg:p-12 border-2 border-brand-orange/30 shadow-glow-orange"
+          class="reveal bg-brand-dark text-white rounded-card p-8 lg:p-12 shadow-elevated-lg"
         >
           <div class="grid lg:grid-cols-3 gap-8 items-center">
             <div class="text-center lg:text-left">
               <span
-                class="text-6xl font-black text-brand-orange"
+                class="text-6xl sm:text-7xl font-extrabold text-brand-orange tabular-nums"
                 data-counter="18"
                 data-counter-suffix="%">18%</span
               >
-              <p class="text-lg font-medium text-gray-300 mt-2">
+              <p class="text-base sm:text-lg font-medium text-brand-washDeep/85 mt-2">
                 de comisión sobre las ventas realizadas a través de la app.
               </p>
             </div>
             <div class="lg:col-span-2 grid sm:grid-cols-3 gap-4 text-center">
-              <div class="p-4 bg-white/10 rounded-card">
-                <i class="ri-close-circle-line text-2xl text-red-400"></i>
-                <p class="text-sm mt-1">Sin mensualidades</p>
+              <div class="p-5 bg-white/[0.07] rounded-card border border-white/10">
+                <i class="ri-shield-check-line text-2xl text-emerald-400" aria-hidden="true"></i>
+                <p class="text-sm font-bold text-white mt-2">Sin mensualidades</p>
+                <p class="text-xs text-brand-washDeep/70 mt-0.5">$0 cobro fijo mensual</p>
               </div>
-              <div class="p-4 bg-white/10 rounded-card">
-                <i class="ri-close-circle-line text-2xl text-red-400"></i>
-                <p class="text-sm mt-1">Sin costos fijos</p>
+              <div class="p-5 bg-white/[0.07] rounded-card border border-white/10">
+                <i class="ri-lock-unlock-line text-2xl text-emerald-400" aria-hidden="true"></i>
+                <p class="text-sm font-bold text-white mt-2">Sin permanencia</p>
+                <p class="text-xs text-brand-washDeep/70 mt-0.5">Libertad total para tu local</p>
               </div>
-              <div class="p-4 bg-white/10 rounded-card">
-                <i class="ri-close-circle-line text-2xl text-red-400"></i>
-                <p class="text-sm mt-1">Sin sorpresas</p>
+              <div class="p-5 bg-white/[0.07] rounded-card border border-white/10">
+                <i class="ri-e-bike-2-line text-2xl text-brand-lightOrange" aria-hidden="true"></i>
+                <p class="text-sm font-bold text-white mt-2">Flota incluida</p>
+                <p class="text-xs text-brand-washDeep/70 mt-0.5">El cliente paga el domicilio</p>
               </div>
             </div>
           </div>
 
-          <hr class="my-8 border-gray-700" />
+          <hr class="my-10 border-white/10" />
 
-          <h3 class="text-lg font-bold mb-4 text-orange-200">Opciones para ajustar la comisión:</h3>
-          <div class="grid md:grid-cols-3 gap-6 text-sm text-gray-300">
-            {
-              commissionOptions.map((option) => (
-                <div class="bg-white/5 p-4 rounded-card border border-white/10">
-                  <strong class="text-white block mb-1">{option.title}</strong>
-                  {option.description}
-                </div>
-              ))
-            }
+          <!-- Interactive Commission Calculator -->
+          <div class="bg-white/[0.05] rounded-card p-6 sm:p-8 border border-white/10">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+              <div>
+                <h3 class="text-xl font-extrabold text-white mb-1">
+                  Simulador interactivo de comisión
+                </h3>
+                <p class="text-sm text-brand-washDeep/80">
+                  Elige cómo distribuir el 18% según la estrategia de precios de tu comercio:
+                </p>
+              </div>
+
+              <div class="flex flex-wrap gap-2" role="group" aria-label="Valor de ejemplo del pedido">
+                <button
+                  type="button"
+                  data-calc-amount="30000"
+                  class="calc-amount-btn px-3.5 py-2 rounded-btn text-xs font-bold tabular-nums transition-colors bg-brand-orange text-white"
+                >
+                  Pedido $30.000
+                </button>
+                <button
+                  type="button"
+                  data-calc-amount="50000"
+                  class="calc-amount-btn px-3.5 py-2 rounded-btn text-xs font-bold tabular-nums transition-colors bg-white/10 text-white hover:bg-white/20"
+                >
+                  Pedido $50.000
+                </button>
+                <button
+                  type="button"
+                  data-calc-amount="80000"
+                  class="calc-amount-btn px-3.5 py-2 rounded-btn text-xs font-bold tabular-nums transition-colors bg-white/10 text-white hover:bg-white/20"
+                >
+                  Pedido $80.000
+                </button>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+              {
+                commissionOptions.map((option, idx) => (
+                  <button
+                    type="button"
+                    data-calc-mode={idx}
+                    class:list={[
+                      'calc-mode-btn text-left p-5 rounded-card border transition-all',
+                      idx === 0
+                        ? 'bg-brand-orange/20 border-brand-orange text-white'
+                        : 'bg-white/5 border-white/10 text-brand-washDeep/80 hover:bg-white/10',
+                    ]}
+                  >
+                    <strong class="text-white block text-sm font-bold mb-1.5">{option.title}</strong>
+                    <span class="text-xs leading-relaxed block">{option.description}</span>
+                  </button>
+                ))
+              }
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-4 bg-brand-ink/80 rounded-card p-5 border border-white/10">
+              <div>
+                <p class="text-xs text-brand-washDeep/70 uppercase tracking-wider font-semibold">
+                  Precio base de tu plato
+                </p>
+                <p id="calc-base-display" class="text-2xl font-extrabold text-white tabular-nums mt-1">
+                  $30.000
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-brand-washDeep/70 uppercase tracking-wider font-semibold">
+                  El cliente paga en la App
+                </p>
+                <p id="calc-customer-display" class="text-2xl font-extrabold text-brand-lightOrange tabular-nums mt-1">
+                  $30.000
+                </p>
+              </div>
+              <div>
+                <p class="text-xs text-brand-washDeep/70 uppercase tracking-wider font-semibold">
+                  Tu comercio recibe
+                </p>
+                <p id="calc-merchant-display" class="text-2xl font-extrabold text-emerald-400 tabular-nums mt-1">
+                  $24.600
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -189,7 +288,7 @@ import {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title">Proceso de Vinculación</h2>
-          <p class="text-brand-secondary/70">
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
             Unirte a Agus es rápido y sin complicaciones. Solo necesitas tener listas las fotos de
             tus productos y el logo de tu negocio.
           </p>
@@ -197,34 +296,37 @@ import {
 
         <div class="grid md:grid-cols-3 gap-8 relative reveal-stagger">
           <div
-            class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-brand-orange/30 via-brand-orange to-brand-orange/30"
+            class="hidden md:block absolute top-14 left-[20%] right-[20%] h-px bg-gradient-to-r from-brand-orange/30 via-brand-orange to-brand-orange/30"
+            aria-hidden="true"
           >
           </div>
           {
             onboardingSteps.map((step) => (
-              <div class="reveal bg-white p-8 rounded-card border border-brand-secondary/10 card-hover relative z-10">
-                <span class="w-11 h-11 bg-brand-orange text-white rounded-btn flex items-center justify-center font-bold text-lg mb-6">
+              <div class="reveal spotlight-card bg-white p-8 rounded-card shadow-elevated card-hover relative z-10">
+                <span class="w-12 h-12 bg-brand-orange text-white rounded-btn flex items-center justify-center font-extrabold text-lg mb-6 shadow-glow-orange tabular-nums">
                   {step.step}
                 </span>
-                <h3 class="text-xl font-bold mb-3">{step.title}</h3>
-                <p class="text-brand-secondary/65 text-sm">{step.description}</p>
+                <h3 class="text-xl font-extrabold text-brand-secondary mb-3">{step.title}</h3>
+                <p class="text-brand-secondary/80 text-sm sm:text-base leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             ))
           }
         </div>
 
-        <div
-          class="reveal mt-16 bg-white p-8 rounded-card border-l-4 border-brand-orange max-w-2xl mx-auto text-center italic"
+        <blockquote
+          class="reveal mt-16 bg-brand-dark text-white p-8 sm:p-10 rounded-card shadow-elevated-lg max-w-3xl mx-auto text-center"
         >
-          <i class="ri-double-quotes-l text-4xl text-brand-orange/30 mb-2 block"></i>
-          <p class="text-brand-secondary/80 font-medium mb-3">
+          <i class="ri-double-quotes-l text-4xl text-brand-lightOrange mb-3 block" aria-hidden="true"></i>
+          <p class="text-white/95 font-medium mb-4 text-lg sm:text-xl leading-relaxed italic">
             "Desde que entramos a Agus, nuestros pedidos de domicilio aumentaron notablemente. La
             plataforma es muy fácil de manejar y los clientes están felices con el servicio."
           </p>
-          <span class="text-xs text-brand-secondary/50 font-semibold uppercase tracking-wider">
+          <footer class="text-xs text-brand-washDeep/80 font-bold uppercase tracking-wider">
             — Propietario, restaurante aliado de Agus
-          </span>
-        </div>
+          </footer>
+        </blockquote>
       </div>
     </section>
 
@@ -232,7 +334,7 @@ import {
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal class="text-center mb-16">
           <h2 class="section-title">Preguntas Frecuentes</h2>
-          <p class="text-brand-secondary/70">
+          <p class="text-brand-secondary/80 text-base sm:text-lg">
             Resolvemos tus dudas sobre el servicio y funcionamiento de Agus App.
           </p>
         </ScrollReveal>
@@ -254,3 +356,62 @@ import {
     ctaMessage={whatsappMessages.deliveries}
   />
 </BaseLayout>
+
+<script>
+  const amountButtons = document.querySelectorAll<HTMLButtonElement>('[data-calc-amount]');
+  const modeButtons = document.querySelectorAll<HTMLButtonElement>('[data-calc-mode]');
+  const baseEl = document.getElementById('calc-base-display');
+  const customerEl = document.getElementById('calc-customer-display');
+  const merchantEl = document.getElementById('calc-merchant-display');
+
+  let currentAmount = 30000;
+  let currentMode = 0;
+
+  const formatCOP = (val: number) => `$${Math.round(val).toLocaleString('es-CO')}`;
+
+  function updateCalculator() {
+    if (!baseEl || !customerEl || !merchantEl) return;
+
+    baseEl.textContent = formatCOP(currentAmount);
+
+    if (currentMode === 0) {
+      // Asumida por el comercio (18%)
+      customerEl.textContent = formatCOP(currentAmount);
+      merchantEl.textContent = formatCOP(currentAmount * 0.82);
+    } else if (currentMode === 1) {
+      // Asumida por el cliente (+18%)
+      customerEl.textContent = formatCOP(currentAmount * 1.18);
+      merchantEl.textContent = formatCOP(currentAmount);
+    } else {
+      // Modelo Mixto (9% comercio / 9% cliente)
+      customerEl.textContent = formatCOP(currentAmount * 1.09);
+      merchantEl.textContent = formatCOP(currentAmount * 0.91);
+    }
+  }
+
+  amountButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentAmount = Number(btn.dataset.calcAmount ?? 30000);
+      amountButtons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('bg-brand-orange', active);
+        b.classList.toggle('bg-white/10', !active);
+      });
+      updateCalculator();
+    });
+  });
+
+  modeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentMode = Number(btn.dataset.calcMode ?? 0);
+      modeButtons.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('bg-brand-orange/20', active);
+        b.classList.toggle('border-brand-orange', active);
+        b.classList.toggle('bg-white/5', !active);
+        b.classList.toggle('border-white/10', !active);
+      });
+      updateCalculator();
+    });
+  });
+</script>

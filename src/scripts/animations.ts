@@ -4,6 +4,8 @@ export function initAnimations() {
   if (!prefersReducedMotion) {
     initScrollReveal();
     initCounter();
+    initTilt3D();
+    initSpotlightCards();
   } else {
     document.querySelectorAll('.reveal').forEach((el) => {
       el.classList.add('is-visible');
@@ -28,7 +30,7 @@ function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
   );
 
   elements.forEach((el) => observer.observe(el));
@@ -64,7 +66,7 @@ function animateCounter(
   prefix: string,
   suffix: string
 ) {
-  const duration = 1500;
+  const duration = 1400;
   const start = performance.now();
 
   const tick = (now: number) => {
@@ -79,6 +81,46 @@ function animateCounter(
   };
 
   requestAnimationFrame(tick);
+}
+
+function initTilt3D() {
+  const stages = document.querySelectorAll<HTMLElement>('[data-tilt-stage]');
+
+  stages.forEach((stage) => {
+    const body = stage.querySelector<HTMLElement>('[data-tilt-body]');
+    if (!body) return;
+
+    const maxTilt = Number(stage.dataset.tiltMax ?? '8');
+
+    stage.addEventListener('pointermove', (e: PointerEvent) => {
+      const rect = stage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      const rotateY = x * maxTilt * 2;
+      const rotateX = -y * maxTilt * 2;
+
+      body.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+    });
+
+    stage.addEventListener('pointerleave', () => {
+      body.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  });
+}
+
+function initSpotlightCards() {
+  const cards = document.querySelectorAll<HTMLElement>('.spotlight-card');
+
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (e: PointerEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
 }
 
 function initFaq() {

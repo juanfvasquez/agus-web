@@ -12,26 +12,29 @@ const {
 } = Astro.props;
 ---
 
-<div class="relative max-w-xs mx-auto">
-  <div class="bg-brand-secondary rounded-card p-3 shadow-glow-orange">
-    <div class="bg-brand-dark rounded-[6px] overflow-hidden">
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        class="w-full max-h-[260px] object-cover object-top"
-        loading="eager"
-      />
+<div class="tilt-3d-stage relative max-w-sm mx-auto" data-tilt-stage data-tilt-max="7">
+  <div class="tilt-3d-body relative" data-tilt-body>
+    <div class="bg-brand-dark rounded-card p-3.5 shadow-elevated-lg border border-white/15">
+      <div class="bg-brand-secondary rounded-[8px] overflow-hidden">
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          class="w-full max-h-[280px] object-cover object-top"
+          loading="eager"
+        />
+      </div>
+      <div class="flex justify-center gap-1.5 mt-3">
+        <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+        <span class="w-2 h-2 rounded-full bg-white/25"></span>
+        <span class="w-2 h-2 rounded-full bg-white/25"></span>
+      </div>
     </div>
-    <div class="flex justify-center gap-1.5 mt-2">
-      <span class="w-2 h-2 rounded-full bg-brand-orange/60"></span>
-      <span class="w-2 h-2 rounded-full bg-white/20"></span>
-      <span class="w-2 h-2 rounded-full bg-white/20"></span>
-    </div>
-  </div>
 
-  <span
-    class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-btn shadow-glow-orange"
-  >
-    {badge}
-  </span>
+    <span
+      class="absolute -top-3 -right-3 bg-brand-orange text-white text-xs font-bold px-3.5 py-1.5 rounded-btn shadow-glow-orange"
+      style="transform: translateZ(30px);"
+    >
+      {badge}
+    </span>
+  </div>
 </div>
